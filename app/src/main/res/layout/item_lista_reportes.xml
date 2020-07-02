@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="3dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border_type_b" >
+
+        <LinearLayout
+            android:id="@+id/ll_event_titles_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent" >
+
+            <TextView
+                android:id="@+id/text_id_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.30"
+                android:background="@drawable/gradient_type_a"
+                android:text="ID"
+                android:textColor="@color/colorDark"
+                android:textAlignment="center"
+                android:padding="3dp" />
+
+            <TextView
+                android:id="@+id/text_status_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.30"
+                android:background="@drawable/gradient_type_a"
+                android:text="ESTATUS"
+                android:textColor="@color/colorDark"
+                android:textAlignment="center"
+                android:padding="3dp" />
+
+            <TextView
+                android:id="@+id/text_date_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.20"
+                android:background="@drawable/gradient_type_a"
+                android:text="FECHA"
+                android:textColor="@color/colorDark"
+                android:textAlignment="center"
+                android:padding="3dp" />
+
+            <TextView
+                android:id="@+id/text_time_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.20"
+                android:background="@drawable/gradient_type_a"
+                android:text="HORA"
+                android:textColor="@color/colorDark"
+                android:textAlignment="center"
+                android:padding="3dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_event_values_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/ll_event_titles_1" >
+
+            <TextView
+                android:id="@+id/text_id_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.30"
+                android:text="AG234598"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textColor="@color/colorDark"
+                android:textAlignment="center"
+                android:textSize="@dimen/card_small_size_font"
+                android:padding="3dp" />
+
+            <TextView
+                android:id="@+id/text_status_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.30"
+                android:text="En Proceso"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textColor="@color/colorDark"
+                android:textAlignment="center"
+                android:textSize="@dimen/card_small_size_font"
+                android:padding="3dp" />
+
+            <TextView
+                android:id="@+id/text_date_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.20"
+                android:text="01-07-2020"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textColor="@color/colorDark"
+                android:textAlignment="center"
+                android:textSize="@dimen/card_small_size_font"
+                android:padding="3dp" />
+
+            <TextView
+                android:id="@+id/text_time_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.20"
+                android:text="14:20"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textColor="@color/colorDark"
+                android:textAlignment="center"
+                android:textSize="@dimen/card_small_size_font"
+                android:padding="3dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_event_mixed_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/ll_event_values_1" >
+
+            <TextView
+                android:id="@+id/text_planta_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:text="PLANTA"
+                android:textColor="@color/colorDark"
+                android:textAlignment="center"
+                android:padding="3dp" />
+
+            <TextView
+                android:id="@+id/text_planta_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="Bermejillo"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textColor="@color/colorDark"
+                android:textAlignment="center"
+                android:textSize="@dimen/card_small_size_font"
+                android:padding="3dp" />
+
+            <TextView
+                android:id="@+id/text_subarea_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:text="SUBAREA"
+                android:textColor="@color/colorDark"
+                android:textAlignment="center"
+                android:padding="3dp" />
+
+            <TextView
+                android:id="@+id/text_subarea_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="Transporte Neumático Líneas 1 y 2"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textColor="@color/colorDark"
+                android:textAlignment="center"
+                android:textSize="@dimen/card_small_size_font"
+                android:padding="3dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_event_mixed_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/ll_event_mixed_1" >
+
+            <TextView
+                android:id="@+id/text_area_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:text="AREA"
+                android:textColor="@color/colorDark"
+                android:textAlignment="center"
+                android:padding="3dp" />
+
+            <TextView
+                android:id="@+id/text_area_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="Lixiviación-Purificación"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textColor="@color/colorDark"
+                android:textAlignment="center"
+                android:textSize="@dimen/card_small_size_font"
+                android:padding="3dp" />
+
+            <TextView
+                android:id="@+id/text_equipo_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:text="EQUIPO"
+                android:textColor="@color/colorDark"
+                android:textAlignment="center"
+                android:padding="3dp" />
+
+            <TextView
+                android:id="@+id/text_equipo_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:text="Bombas de Alim./Recirc. L3"
+                android:ellipsize="end"
+                android:lines="1"
+                android:textColor="@color/colorDark"
+                android:textAlignment="center"
+                android:textSize="@dimen/card_small_size_font"
+                android:padding="3dp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

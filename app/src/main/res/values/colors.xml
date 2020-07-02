@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#73C6E7</color>
+    <color name="colorSecondary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#006EB7</color>
+    <color name="colorAccent">#121E74</color>
+    <color name="colorDark">#000000</color>
+    <color name="colorGray">#999999</color>
+    <color name="colorComplementl">#C84630</color>
+    <color name="colorComplement2">#9EE493</color>
+</resources>
