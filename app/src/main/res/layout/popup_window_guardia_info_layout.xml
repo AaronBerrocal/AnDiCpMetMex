@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center_vertical"
+    android:background="@drawable/popup_window_border"
+    android:padding="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageButton
+        android:id="@+id/btn_watch_data_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_close_black_24"
+        android:background="@drawable/guardia_outline_background"
+        android:layout_gravity="end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="DATOS DE GUARDIA"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/colorWhite"
+        android:textStyle="bold"
+        android:textSize="@dimen/event_title_font_size_big"
+        android:textAlignment="center"
+        android:background="@drawable/eventos_title_background"
+        android:padding="8dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPenolesGrayM" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="Extensión"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/event_title_font_size_normal"
+            android:textAlignment="center"
+            android:background="@drawable/guardia_outline_background"
+            android:layout_marginEnd="8dp"
+            android:padding="4dp"/>
+
+        <TextView
+            android:id="@+id/txt_extension_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:layout_gravity="center"
+            android:text="5959"
+            android:textAlignment="center"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/event_title_font_size_big"
+            android:layout_marginEnd="8dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPenolesGrayM" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="Número Telefónico"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/event_title_font_size_normal"
+            android:textAlignment="center"
+            android:background="@drawable/guardia_outline_background"
+            android:layout_marginEnd="8dp"
+            android:padding="4dp"/>
+
+        <TextView
+            android:id="@+id/txt_phone_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:layout_gravity="center"
+            android:text="@string/telefono_guardia"
+            android:autoLink="phone"
+            android:textAlignment="center"
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="@dimen/event_title_font_size_big"
+            android:layout_marginEnd="8dp"/>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPenolesGrayM" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="Correo Electrónico"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/event_title_font_size_normal"
+            android:textAlignment="center"
+            android:background="@drawable/guardia_outline_background"
+            android:layout_marginEnd="8dp"
+            android:padding="4dp"/>
+
+        <TextView
+            android:id="@+id/txt_email_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:layout_gravity="center"
+            android:text="@string/email_guardia"
+            android:autoLink="email"
+            android:textAlignment="center"
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="@dimen/event_title_font_size_big"
+            android:layout_marginEnd="8dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

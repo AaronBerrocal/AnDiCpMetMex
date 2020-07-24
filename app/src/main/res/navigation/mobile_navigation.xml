@@ -3,29 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/nav_reporte_eventos">
+    app:startDestination="@id/nav_eventos">
 
     <fragment
-        android:id="@+id/nav_reporte_eventos"
-        android:name="com.aleph5.andicpmetmex.ui.guardiaeventos.ListaReportes"
-        android:label="@string/menu_reporte_eventos"
-        tools:layout="@layout/fragment_lista_reportes" />
+        android:id="@+id/nav_eventos"
+        android:name="com.aleph5.andicpmetmex.ui.eventos.AdministracionEventosFragment"
+        android:label="@string/menu_eventos"
+        tools:layout="@layout/fragment_administracion_eventos" />
 
     <fragment
-        android:id="@+id/nav_home"
-        android:name="com.aleph5.andicpmetmex.ui.home.HomeFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/nav_proyectos"
+        android:name="com.aleph5.andicpmetmex.ui.proyectos.AdministracionProyectosFragment"
+        android:label="@string/menu_proyectos"
+        tools:layout="@layout/fragment_administracion_proyectos" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.aleph5.andicpmetmex.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_convenios"
+        android:name="com.aleph5.andicpmetmex.ui.convenios.ConveniosSoporteFragment"
+        android:label="@string/menu_convenios"
+        tools:layout="@layout/fragment_convenios_soporte" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.aleph5.andicpmetmex.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_utilerias"
+        android:name="com.aleph5.andicpmetmex.ui.utilerias.UtileriasApoyoFragment"
+        android:label="@string/menu_utilerias"
+        tools:layout="@layout/fragment_utilerias_apoyo" />
+
+    <fragment
+        android:id="@+id/nav_refacciones"
+        android:name="com.aleph5.andicpmetmex.ui.refacciones.InventarioRefaccionesFragment"
+        android:label="@string/menu_refacciones"
+        tools:layout="@layout/fragment_inventario_refacciones" />
+
+    <fragment
+        android:id="@+id/nav_equipocomputo"
+        android:name="com.aleph5.andicpmetmex.ui.equipocomputo.InventarioComputoFragment"
+        android:label="@string/menu_equipocomputo"
+        tools:layout="@layout/fragment_inventario_computo" />
+
 </navigation>

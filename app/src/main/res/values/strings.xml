@@ -10,12 +10,15 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_reporte_eventos">Reporte de Eventos</string>
-    <string name="menu_proyectos">Proyectos</string>
+    <string name="menu_eventos">Administración de Eventos</string>
+    <string name="menu_proyectos">Administración de Proyectos</string>
     <string name="menu_convenios">Convenios de Soporte</string>
-    <string name="menu_utilerias">Utilerias</string>
+    <string name="menu_utilerias">Utilerías de Apoyo</string>
     <string name="menu_refacciones">Inventario de Refacciones</string>
-    <string name="menu_computo">Inventario de Cómputo</string>
+    <string name="menu_equipocomputo">Inventario de Cómputo</string>
     <string name="menu_portatiles">Medición y Etiquetado</string>
+
+    <string name="telefono_guardia">+52 87 1234 5119</string>
+    <string name="email_guardia"><a href="guardia.cp@gmail.com">guardia.cp@gmail.com</a></string>
 
 </resources>

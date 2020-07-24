@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.convenios.ConveniosSoporteFragment">
+
+    <LinearLayout
+        android:id="@+id/linlay_agreements_titles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/eventos_title_background"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="2dp"
+            android:layout_weight="0.85"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="CONVENIOS DE SOPORTE"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/event_title_font_size_big"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="Información de Soporte"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/event_title_font_size_normal"
+                android:textStyle="italic" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_agreements_filter"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="0.15"
+            android:background="@drawable/eventos_btn_background"
+            android:src="@drawable/ic_baseline_sort_24" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/agreements_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linlay_agreements_titles"
+        tools:listitem="@layout/item_agreement" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

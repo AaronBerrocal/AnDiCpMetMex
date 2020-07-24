@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardElevation="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/card_outline_background"
+        android:padding="4dp">
+
+        <LinearLayout
+            android:id="@+id/ll_proj_id_responsable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/event_item_background_one"
+                    android:padding="4dp"
+                    android:text="ID"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_project_id_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="11111111"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/event_item_background_one"
+                    android:padding="4dp"
+                    android:text="PROYECTO"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_project_name_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Ingeniaria de Red de Control"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/event_item_background_one"
+                    android:padding="4dp"
+                    android:text="RESPONSABLE"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_project_responsible_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="mmoreno"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_proj_fechas_prioridad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/ll_proj_id_responsable">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="FECHA INICIO"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_project_start_date_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="17-01-2020"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="FECHA FIN"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_project_end_date_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="17-05-2020"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="PRIORIDAD"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_project_priority_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Media"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_proj_avance_estatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/ll_proj_fechas_prioridad">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="AVANCE PRESUPUESTO"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_project_budgeted_progress_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="50%"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="AVANCE ACTUAL"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_project_current_progress_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="45%"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="ESTATUS"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_project_status_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Retrasado"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

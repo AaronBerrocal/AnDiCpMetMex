@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="4dp"
+    app:cardElevation="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/card_outline_background"
+        android:padding="4dp">
+
+        <LinearLayout
+            android:id="@+id/ll_part_serie_r"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/event_item_background_two"
+                    android:padding="4dp"
+                    android:text="NúMERO DE SERIE"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_part_serial_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="A001-20"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/event_item_background_two"
+                    android:padding="4dp"
+                    android:text="REFACCIÓN"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_part_name_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="SE 4302T01 Discrete Otuput CHARM; 24 Vdc; High-Side"
+                    android:lines="2"
+                    android:ellipsize="end"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/event_item_background_two"
+                    android:padding="4dp"
+                    android:text="ESTATUS"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_part_status_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="No Disponible"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_part_inventario_e"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/ll_part_serie_r">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="INVENTARIO"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_part_inventory_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Arrendamiento Emerson"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.15"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="GAVETA"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_part_shelf_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="2"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.15"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="CAJA"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_part_box_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="5"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="FECHA DE REGISTRO"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_part_register_date_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="22-07-2020"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="4dp"
+    app:cardElevation="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/card_outline_background"
+        android:padding="4dp">
+
+        <LinearLayout
+            android:id="@+id/ll_agree_pct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/event_item_background_two"
+                    android:padding="4dp"
+                    android:text="PROVEEDOR"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_agreement_provider_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Emerson"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/event_item_background_two"
+                    android:padding="4dp"
+                    android:text="CONTRATO"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_agreement_number_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="A110 20"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/event_item_background_two"
+                    android:padding="4dp"
+                    android:text="CONTACTO"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_agreement_contact_support_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="+52 80 0909 0100"
+                    android:autoLink="phone"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_agree_fiffve"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/ll_agree_pct">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="FECHA INICIO"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_agreement_start_date_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="01-01-2020"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="FECHA FIN"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_agreement_end_date_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="31-12-2020"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="VIGENCIA"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_agreement_validity_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="12 meses"
+                    android:autoLink="phone"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="ESTATUS"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_agreement_status_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Vigente"
+                    android:autoLink="phone"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_agree_doc_web"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/ll_agree_fiffve">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="DOCUMENTO DE CONVENIO"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <ImageButton
+                    android:id="@+id/btn_agreement_document"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_document_24"
+                    android:backgroundTint="@color/colorWhite"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="PÁGINA WEB"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <ImageButton
+                    android:id="@+id/btn_agreement_web_page"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_web_page_24"
+                    android:backgroundTint="@color/colorWhite"
+                    android:layout_gravity="center" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

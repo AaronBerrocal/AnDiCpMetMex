@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardElevation="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/card_outline_background"
+        android:padding="4dp">
+
+        <LinearLayout
+            android:id="@+id/ll_id_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/event_item_background_two"
+                    android:padding="4dp"
+                    android:text="EVENTO"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_event_id_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="11111111"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/event_item_background_two"
+                    android:padding="4dp"
+                    android:text="FECHA DE REPORTE"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_event_date_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="03-06-2020, 11:20"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/event_item_background_two"
+                    android:padding="4dp"
+                    android:text="PRIORIDAD"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_event_priority_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Media"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/event_item_background_two"
+                    android:padding="4dp"
+                    android:text="ESTATUS"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_event_status_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Alta"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_p_a_s"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/ll_id_date">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="PLANTA"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_event_planta_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Aleazin"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="AREA"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_event_area_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Horno de Soplado"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="SUBÁREA"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_event_subarea_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Horno de Soplado 1"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_eq_s_ev"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/ll_p_a_s">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="EQUIPO"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_event_equipment_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Roladora"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="TIPO DE SISTEMA"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_event_system_type_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Emerson Delta V"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="TIPO DE EVENTO"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_event_type_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Falla"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
