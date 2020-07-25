@@ -42,20 +42,17 @@ class InventarioRefaccionesAdapter(private val partDataList: ArrayList<PartData>
         holder.boxTv.text = currentItem.caja.toString()
         holder.registerDateTv.text = currentItem.fechaRegistro
 
-        when(currentItem.estatus){
-            "Disponible" -> holder.statusTv.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.colorGreenCheck)
+        holder.statusTv.setTextColor(
+            ContextCompat.getColor(
+                holder.itemView.context,
+                when(currentItem.estatus){
+                    "Disponible" -> R.color.colorGreenCheck
+                    "Apartada" -> R.color.colorYellowCheck
+                    "No Disponible" -> R.color.colorRedCheck
+                    else -> R.color.colorRedCheck
+                }
             )
-            "Apartada" -> holder.statusTv.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.colorYellowCheck)
-            )
-            "No Disponible" -> holder.statusTv.setTextColor(
-                ContextCompat.getColor(holder.itemView.context, R.color.colorRedCheck)
-            )
-            else -> holder.statusTv.setTextColor(
-            ContextCompat.getColor(holder.itemView.context, R.color.colorRedCheck)
-            )
-        }
+        )
 
     }
 

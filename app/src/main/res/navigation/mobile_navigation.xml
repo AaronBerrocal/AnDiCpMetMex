@@ -41,4 +41,10 @@
         android:label="@string/menu_equipocomputo"
         tools:layout="@layout/fragment_inventario_computo" />
 
+    <fragment
+        android:id="@+id/nav_medicionetiquetado"
+        android:name="com.aleph5.andicpmetmex.ui.medicionetiquetado.InventarioMedicionEtiquetadoFragment"
+        android:label="@string/menu_medicionetiquetado"
+        tools:layout="@layout/fragment_inventario_medicion_etiquetado" />
+
 </navigation>

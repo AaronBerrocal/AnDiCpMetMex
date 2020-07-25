@@ -39,7 +39,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_convenios,
                 R.id.nav_utilerias,
                 R.id.nav_refacciones,
-                R.id.nav_equipocomputo
+                R.id.nav_equipocomputo,
+                R.id.nav_medicionetiquetado
             ),
             drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)

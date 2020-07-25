@@ -233,5 +233,43 @@ object UtilityMethods {
         return  list
     }
 
+    fun generateMeasureLabelList(size: Int) : ArrayList<MeasureLabelData>{
+
+        val list = ArrayList<MeasureLabelData>()
+
+        for(i in 0 until size){
+
+            val item = MeasureLabelData(
+                "serialNumber $i",
+                "Equipo $i",
+                "Marca $i",
+                "idTipoEquipo $i",
+                "Tipo Equipo $i",
+                Random.nextInt(3) + 1,
+                when(Random.nextInt(3) + 1){
+                    1 -> "Disponible"
+                    2 -> "Reparación"
+                    3 -> "Baja"
+                    else -> "Baja"
+                },
+                Random.nextInt(2),
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                    LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+                }else{
+                    SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
+                },
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                    LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
+                }else{
+                    SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(Date())
+                }
+            )
+
+            list += item
+        }
+
+        return list
+    }
+
 
 }

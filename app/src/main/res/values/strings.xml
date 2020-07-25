@@ -16,7 +16,7 @@
     <string name="menu_utilerias">Utilerías de Apoyo</string>
     <string name="menu_refacciones">Inventario de Refacciones</string>
     <string name="menu_equipocomputo">Inventario de Cómputo</string>
-    <string name="menu_portatiles">Medición y Etiquetado</string>
+    <string name="menu_medicionetiquetado">Medición y Etiquetado</string>
 
     <string name="telefono_guardia">+52 87 1234 5119</string>
     <string name="email_guardia"><a href="guardia.cp@gmail.com">guardia.cp@gmail.com</a></string>

@@ -38,7 +38,7 @@
         <item
             android:id="@+id/nav_medicionetiquetado"
             android:icon="@drawable/ic_baseline_speed_24"
-            android:title="@string/menu_portatiles" />
+            android:title="@string/menu_medicionetiquetado" />
 
     </group>
 </menu>

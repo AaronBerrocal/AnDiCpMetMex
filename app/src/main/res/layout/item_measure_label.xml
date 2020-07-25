@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardElevation="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/card_outline_background"
+        android:padding="4dp">
+
+        <LinearLayout
+            android:id="@+id/ll_measure_equipment_generals"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/event_item_background_two"
+                    android:padding="4dp"
+                    android:text="NÚMERO DE SERIE"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_measure_serial_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="9679004"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/event_item_background_two"
+                    android:padding="4dp"
+                    android:text="EQUIPO"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_measure_name_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Thermal Imager Ti10, Cargador, manuales y CD"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.3"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/event_item_background_two"
+                    android:padding="4dp"
+                    android:text="MARCA"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_measure_brand_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Emerson"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_measure_equipment_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/ll_measure_equipment_generals">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="TIPO DE EQUIPO"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_measure_equipment_type_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Medidor Térmico"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="ESTATUS"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_measure_status_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="Reparación"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="ACTIVO"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <ImageView
+                    android:id="@+id/img_measure_active_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_baseline_check_circle_18"
+                    android:layout_gravity="end" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_measure_date_properties"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/ll_measure_equipment_status">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="FECHA DE ADQUISICIÓN"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_measure_acquisition_date_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="01-01-2020"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorPenolesGrayM" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/eventos_title_background"
+                    android:padding="4dp"
+                    android:text="VIGENCIA DE GARANTÍA"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_smaller"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/txt_measure_warranty_date_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:text="01-01-2020"
+                    android:textAlignment="textEnd"
+                    android:textSize="@dimen/card_font_size_small" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
