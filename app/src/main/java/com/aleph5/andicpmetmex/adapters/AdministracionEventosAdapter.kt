@@ -8,9 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.aleph5.andicpmetmex.R
 import com.aleph5.andicpmetmex.datamodels.EventData
+import com.aleph5.andicpmetmex.entities.EventEntity
 import kotlinx.android.synthetic.main.item_event.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
-class AdministracionEventosAdapter(private val eventDataList: ArrayList<EventData>) : Adapter<AdministracionEventosAdapter.AdministracionEventosViewHolder>(){
+class AdministracionEventosAdapter: Adapter<AdministracionEventosAdapter.AdministracionEventosViewHolder>(){
+
+    private var eventsList = emptyList<EventEntity>()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -31,10 +36,10 @@ class AdministracionEventosAdapter(private val eventDataList: ArrayList<EventDat
         position: Int
     ) {
 
-        val currentItem = eventDataList[position]
+        val currentItem = eventsList[position]
 
         holder.idTv.text = currentItem.idEvento
-        holder.dateTv.text = currentItem.fechaReporte
+        holder.dateTv.text = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault()).format(currentItem.fechaReporte)
         holder.priorityTv.text = currentItem.prioridad
         holder.statusTv.text = currentItem.estatus
         holder.plantTv.text = currentItem.planta
@@ -45,7 +50,12 @@ class AdministracionEventosAdapter(private val eventDataList: ArrayList<EventDat
         holder.eventTypeTv.text = currentItem.tipoEvento
     }
 
-    override fun getItemCount() = eventDataList.size
+    override fun getItemCount() = eventsList.size
+
+    fun setEvents(eventsList: List<EventEntity>){
+        this.eventsList = eventsList
+        notifyDataSetChanged()
+    }
 
     class AdministracionEventosViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
