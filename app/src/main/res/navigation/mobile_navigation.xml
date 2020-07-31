@@ -9,7 +9,15 @@
         android:id="@+id/nav_eventos"
         android:name="com.aleph5.andicpmetmex.ui.eventos.AdministracionEventosFragment"
         android:label="@string/menu_eventos"
-        tools:layout="@layout/fragment_administracion_eventos" />
+        tools:layout="@layout/fragment_administracion_eventos" >
+        <action
+            android:id="@+id/action_nav_eventos_to_nav_reportar_evento"
+            app:destination="@id/nav_reportar_evento"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_proyectos"
@@ -46,5 +54,11 @@
         android:name="com.aleph5.andicpmetmex.ui.medicionetiquetado.InventarioMedicionEtiquetadoFragment"
         android:label="@string/menu_medicionetiquetado"
         tools:layout="@layout/fragment_inventario_medicion_etiquetado" />
+
+    <fragment
+        android:id="@+id/nav_reportar_evento"
+        android:name="com.aleph5.andicpmetmex.ui.eventos.ReportarEventoFragment"
+        android:label="@string/toolbar_title_reporte_evento"
+        tools:layout="@layout/fragment_reportar_evento" />
 
 </navigation>

@@ -13,29 +13,32 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aleph5.andicpmetmex.R
 import com.aleph5.andicpmetmex.adapters.AdministracionEventosAdapter
-import com.aleph5.andicpmetmex.entities.EventEntity
-import com.aleph5.andicpmetmex.utilityclasses.UtilityMethods
 import kotlinx.android.synthetic.main.fragment_administracion_eventos.view.*
 import kotlinx.android.synthetic.main.popup_window_guardia_info_layout.view.*
 
 class AdministracionEventosFragment : Fragment() {
 
+    companion object {
+        fun newInstance() = AdministracionEventosFragment()
+    }
+
     private lateinit var administracionEventosViewModel: AdministracionEventosViewModel
-    private lateinit var eventDataList : ArrayList<EventEntity>
+//    private lateinit var eventDataList : ArrayList<EventEntity>
     private var adapter = AdministracionEventosAdapter()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        administracionEventosViewModel = ViewModelProvider(this).get(AdministracionEventosViewModel::class.java)
-        administracionEventosViewModel.allEvents.observe(this, Observer { events ->
-            events?.let { adapter.setEvents(it) }
-        })
-    }
+//    override fun onCreate(savedInstanceState: Bundle?) {
+//        super.onCreate(savedInstanceState)
+//
+//        administracionEventosViewModel = ViewModelProvider(this).get(AdministracionEventosViewModel::class.java)
+//        administracionEventosViewModel.allEvents.observe(this, Observer { events ->
+//            events?.let { adapter.setEvents(it) }
+//        })
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,7 +64,22 @@ class AdministracionEventosFragment : Fragment() {
             showWardInfoPopupWindow(container, getString(R.string.telefono_guardia))
         }
 
+        val reportNewEventBtn : ImageButton = root.btn_to_report
+
+        reportNewEventBtn.setOnClickListener{
+            findNavController().navigate(R.id.action_nav_eventos_to_nav_reportar_evento)
+        }
+
         return root
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        administracionEventosViewModel = ViewModelProvider(this).get(AdministracionEventosViewModel::class.java)
+        administracionEventosViewModel.allEvents.observe(viewLifecycleOwner, Observer { events ->
+            events?.let { adapter.setEvents(it) }
+        })
     }
 
     private fun showWardInfoPopupWindow(container: ViewGroup?, telephone: String){

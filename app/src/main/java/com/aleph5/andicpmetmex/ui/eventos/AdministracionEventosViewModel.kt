@@ -15,11 +15,13 @@ class AdministracionEventosViewModel(application: Application) : AndroidViewMode
 
     private val repository: AnDiCpRepository
     val allEvents: LiveData<List<EventEntity>>
+    val eventsCount: LiveData<Int>
 
     init {
         val eventDao = AnDiCpRoomDatabase.getDatabase(application, viewModelScope).EventDao()
         repository = AnDiCpRepository(eventDao)
         allEvents = repository.events
+        eventsCount = repository.eventsCount
     }
 
     fun insertEventVm(newEvent: EventEntity) : Job = viewModelScope.launch {

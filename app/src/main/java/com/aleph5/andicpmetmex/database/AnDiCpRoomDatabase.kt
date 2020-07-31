@@ -106,14 +106,14 @@ public abstract class AnDiCpRoomDatabase : RoomDatabase() {
                 "Control",
                 2, //2
                 "Falla", //Falla
-                "mmoreno",
-                "ext. 5959",
-                "marcos_moreno@penoles.com.mx",
-                Date(),
                 3, //1 //2
                 "Baja", //Alta //Media
                 1, //2 //3 //4
                 "Abierto", //Diagnóstico //Ejecución //Pendiente
+                "mmoreno",
+                "ext. 5959",
+                "marcos_moreno@penoles.com.mx",
+                Date(),
                 null,
                 null,
                 null,
@@ -144,14 +144,14 @@ public abstract class AnDiCpRoomDatabase : RoomDatabase() {
                 "Experto",
                 1, //2
                 "Solicitud", //Falla
-                "gmarquez",
-                "ext. 5959",
-                "gabriel_marquez@penoles.com.mx",
-                Date(),
                 3, //1 //2
                 "Baja", //Alta //Media
                 3, //2 //3 //4
                 "Ejecución", //Diagnóstico //Ejecución //Pendiente
+                "gmarquez",
+                "ext. 5959",
+                "gabriel_marquez@penoles.com.mx",
+                Date(),
                 null,
                 null,
                 null,

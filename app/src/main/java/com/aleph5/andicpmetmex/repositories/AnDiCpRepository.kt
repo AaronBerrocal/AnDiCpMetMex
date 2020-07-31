@@ -10,6 +10,8 @@ class AnDiCpRepository(
 
     val events: LiveData<List<EventEntity>> = eventDao.loadAllEvents()
 
+    val eventsCount: LiveData<Int> = eventDao.countEvents()
+
     suspend fun insertEventRepo(newEvent: EventEntity){
         eventDao.insertEvent(newEvent)
     }

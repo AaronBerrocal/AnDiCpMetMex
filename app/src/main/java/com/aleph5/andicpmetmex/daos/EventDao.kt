@@ -13,10 +13,15 @@ interface EventDao {
     @Query("SELECT * FROM eventos ORDER BY fecha_reporte DESC")
     fun loadAllEvents(): LiveData<List<EventEntity>>
 
+    @Query("SELECT count(*) FROM eventos")
+    fun countEvents(): LiveData<Int>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertEvent(newEvent: EventEntity)
 
     @Query("DELETE FROM eventos")
     suspend fun deleteAllEvents()
+
+
 
 }

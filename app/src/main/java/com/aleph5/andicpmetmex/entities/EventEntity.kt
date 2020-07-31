@@ -55,6 +55,16 @@ data class EventEntity(
     @ColumnInfo(name = "tipo_evento")
     val tipoEvento: String,
 
+    @ColumnInfo(name = "id_prioridad")
+    val idPrioridad: Int,
+
+    val prioridad: String,
+
+    @ColumnInfo(name = "id_estatus")
+    val idEstatus: Int,
+
+    val estatus: String,
+
     @ColumnInfo(name = "nombre_solicitante")
     val nombreSolicitante: String,
 
@@ -66,16 +76,6 @@ data class EventEntity(
 
     @ColumnInfo(name = "fecha_reporte")
     val fechaReporte: Date,
-
-    @ColumnInfo(name = "id_prioridad")
-    val idPrioridad: Int?,
-
-    val prioridad: String?,
-
-    @ColumnInfo(name = "id_estatus")
-    val idEstatus: Int?,
-
-    val estatus: String?,
 
     @ColumnInfo(name = "id_tipo_falla")
     val idTipoFalla: Int?,

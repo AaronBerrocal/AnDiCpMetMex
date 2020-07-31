@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.eventos.ReportarEventoFragment">
+
+    <TextView
+        android:id="@+id/txt_report_event_instructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Proporcione la siguiente información requerida :"
+        android:textSize="@dimen/event_title_font_size_normal"
+        android:textColor="@color/colorWhite"
+        android:background="@drawable/event_item_background_two"
+        android:padding="8dp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_report_event_data"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="8dp"
+        app:layout_constraintTop_toBottomOf="@id/txt_report_event_instructions"
+        app:layout_constraintBottom_toTopOf="@id/ll_report_event_cancel_save">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="4dp" >
+
+            <TextView
+                android:id="@+id/txt_r_e_ubicacion_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ubicación"
+                android:textSize="@dimen/event_title_font_size_bigger"
+                android:gravity="center"
+                android:background="@drawable/normal_header_background_red"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:layout_marginBottom="2dp" />
+
+            <LinearLayout
+                android:id="@+id/ll_ubicacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Planta"
+                        android:background="@drawable/small_header_background"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/card_font_size_normal"/>
+
+                    <EditText
+                        android:id="@+id/etv_report_event_planta_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/event_title_font_size_normal"
+                        android:hint="Nombre de la Planta"
+                        android:gravity="end" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Area"
+                        android:background="@drawable/small_header_background"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/card_font_size_normal"/>
+
+                    <EditText
+                        android:id="@+id/etv_report_event_area_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/event_title_font_size_normal"
+                        android:hint="Nombre del Área"
+                        android:gravity="end" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Subárea"
+                        android:background="@drawable/small_header_background"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/card_font_size_normal"/>
+
+                    <EditText
+                        android:id="@+id/etv_report_event_subarea_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/event_title_font_size_normal"
+                        android:hint="Nombre del Subárea"
+                        android:gravity="end" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="4dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="2dp" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Equipo"
+                    android:background="@drawable/small_header_background"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/card_font_size_normal"/>
+
+                <EditText
+                    android:id="@+id/etv_report_event_equipo_planta_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="@dimen/event_title_font_size_normal"
+                    android:hint="Nombre del Equipo de Planta"
+                    android:gravity="end" />
+
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Tipo de Sistema"
+                        android:background="@drawable/small_header_background"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/card_font_size_normal"/>
+
+                    <EditText
+                        android:id="@+id/etv_report_event_tipo_sistema_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/event_title_font_size_normal"
+                        android:hint="Nombre del Tipo de Sistema"
+                        android:gravity="end" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_r_e_caracteristicas_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Características"
+                android:textSize="@dimen/event_title_font_size_bigger"
+                android:gravity="center"
+                android:background="@drawable/normal_header_background_red"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp" />
+
+            <LinearLayout
+                android:id="@+id/ll_caracteristicas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Tipo de Evento"
+                        android:background="@drawable/small_header_background"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/card_font_size_normal"/>
+
+                    <EditText
+                        android:id="@+id/etv_report_event_tipo_evento_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/event_title_font_size_normal"
+                        android:hint="Nombre del Tipo de Evento"
+                        android:gravity="end" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Prioridad"
+                        android:background="@drawable/small_header_background"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/card_font_size_normal"/>
+
+                    <EditText
+                        android:id="@+id/etv_report_event_prioridad_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/event_title_font_size_normal"
+                        android:hint="Prioridad Asignada"
+                        android:gravity="end" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Estatus"
+                        android:background="@drawable/small_header_background"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/card_font_size_normal"/>
+
+                    <EditText
+                        android:id="@+id/etv_report_event_estatus_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/event_title_font_size_normal"
+                        android:hint="Estatus Actual"
+                        android:gravity="end" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txt_r_e_solicitud_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Solicitud"
+                android:textSize="@dimen/event_title_font_size_bigger"
+                android:gravity="center"
+                android:background="@drawable/normal_header_background_red"
+                android:textColor="@color/colorWhite"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="2dp" />
+
+            <LinearLayout
+                android:id="@+id/ll_solicitud"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Nombre del Solicitante"
+                        android:background="@drawable/small_header_background"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/card_font_size_normal"/>
+
+                    <EditText
+                        android:id="@+id/etv_report_event_nombre_solicitante_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/event_title_font_size_normal"
+                        android:hint="Nombre del Solicitante"
+                        android:gravity="end" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Contacto del Solicitante"
+                        android:background="@drawable/small_header_background"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/card_font_size_normal"/>
+
+                    <EditText
+                        android:id="@+id/etv_report_event_contacto_solicitante_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/event_title_font_size_normal"
+                        android:hint="Número Telefónico, Extensión, ..."
+                        android:gravity="end" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Correo del Solicitante"
+                        android:background="@drawable/small_header_background"
+                        android:textColor="@color/colorWhite"
+                        android:textSize="@dimen/card_font_size_normal"/>
+
+                    <EditText
+                        android:id="@+id/etv_report_event_correo_solicitante_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="@dimen/event_title_font_size_normal"
+                        android:hint="correo.solicitante@ejemplo.com"
+                        android:gravity="end" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/ll_report_event_cancel_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mbtn_report_event_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/cancel_text"
+            android:textColor="@color/colorPenolesGoldM"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/colorWhite" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/mbtn_report_event_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="@string/save_text"
+            android:textColor="@color/colorPenolesGoldM"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/colorWhite" />
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

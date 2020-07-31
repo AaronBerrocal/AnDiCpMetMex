@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "87931c2cac0c4f843a6277ab51fda1c8",
+    "identityHash": "0c1d7a7f8172476cf0ff98b517d82ae0",
     "entities": [
       {
         "tableName": "eventos",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id_evento` TEXT NOT NULL, `id_planta` TEXT NOT NULL, `planta` TEXT NOT NULL, `id_area` TEXT NOT NULL, `area` TEXT NOT NULL, `id_subarea` TEXT NOT NULL, `subarea` TEXT NOT NULL, `id_equipo_planta` TEXT NOT NULL, `equipo_planta` TEXT NOT NULL, `id_tipo_sistema` TEXT NOT NULL, `tipo_sistema` TEXT NOT NULL, `id_tipo_evento` INTEGER NOT NULL, `tipo_evento` TEXT NOT NULL, `nombre_solicitante` TEXT NOT NULL, `contacto_solicitante` TEXT NOT NULL, `correo_solicitante` TEXT NOT NULL, `fecha_reporte` INTEGER NOT NULL, `id_prioridad` INTEGER, `prioridad` TEXT, `id_estatus` INTEGER, `estatus` TEXT, `id_tipo_falla` INTEGER, `tipo_falla` TEXT, `id_subtipo_falla` INTEGER, `subtipo_falla` TEXT, `id_tipo_atencion` INTEGER, `tipo_atencion` TEXT, `diagnostico` TEXT, `fecha_solucion` INTEGER, `comentarios` TEXT, `nombre_usuario_alta` TEXT, `guardia_en_turno` TEXT, `nombre_ejecutor` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id_evento` TEXT NOT NULL, `id_planta` TEXT NOT NULL, `planta` TEXT NOT NULL, `id_area` TEXT NOT NULL, `area` TEXT NOT NULL, `id_subarea` TEXT NOT NULL, `subarea` TEXT NOT NULL, `id_equipo_planta` TEXT NOT NULL, `equipo_planta` TEXT NOT NULL, `id_tipo_sistema` TEXT NOT NULL, `tipo_sistema` TEXT NOT NULL, `id_tipo_evento` INTEGER NOT NULL, `tipo_evento` TEXT NOT NULL, `id_prioridad` INTEGER NOT NULL, `prioridad` TEXT NOT NULL, `id_estatus` INTEGER NOT NULL, `estatus` TEXT NOT NULL, `nombre_solicitante` TEXT NOT NULL, `contacto_solicitante` TEXT NOT NULL, `correo_solicitante` TEXT NOT NULL, `fecha_reporte` INTEGER NOT NULL, `id_tipo_falla` INTEGER, `tipo_falla` TEXT, `id_subtipo_falla` INTEGER, `subtipo_falla` TEXT, `id_tipo_atencion` INTEGER, `tipo_atencion` TEXT, `diagnostico` TEXT, `fecha_solucion` INTEGER, `comentarios` TEXT, `nombre_usuario_alta` TEXT, `guardia_en_turno` TEXT, `nombre_ejecutor` TEXT)",
         "fields": [
           {
             "fieldPath": "uid",
@@ -93,6 +93,30 @@
             "notNull": true
           },
           {
+            "fieldPath": "idPrioridad",
+            "columnName": "id_prioridad",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prioridad",
+            "columnName": "prioridad",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idEstatus",
+            "columnName": "id_estatus",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "estatus",
+            "columnName": "estatus",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
             "fieldPath": "nombreSolicitante",
             "columnName": "nombre_solicitante",
             "affinity": "TEXT",
@@ -115,30 +139,6 @@
             "columnName": "fecha_reporte",
             "affinity": "INTEGER",
             "notNull": true
-          },
-          {
-            "fieldPath": "idPrioridad",
-            "columnName": "id_prioridad",
-            "affinity": "INTEGER",
-            "notNull": false
-          },
-          {
-            "fieldPath": "prioridad",
-            "columnName": "prioridad",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "idEstatus",
-            "columnName": "id_estatus",
-            "affinity": "INTEGER",
-            "notNull": false
-          },
-          {
-            "fieldPath": "estatus",
-            "columnName": "estatus",
-            "affinity": "TEXT",
-            "notNull": false
           },
           {
             "fieldPath": "idTipoFalla",
@@ -235,7 +235,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '87931c2cac0c4f843a6277ab51fda1c8')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0c1d7a7f8172476cf0ff98b517d82ae0')"
     ]
   }
 }
