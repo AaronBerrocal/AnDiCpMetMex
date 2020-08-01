@@ -7,14 +7,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.aleph5.andicpmetmex.R
 import com.aleph5.andicpmetmex.entities.EventEntity
+import com.aleph5.andicpmetmex.utilityclasses.InjectorUtils
 import com.aleph5.andicpmetmex.utilityclasses.expandCollapse
 import com.aleph5.andicpmetmex.utilityclasses.hideKeyboard
+import com.aleph5.andicpmetmex.viewmodels.AdministracionEventosViewModel
 import kotlinx.android.synthetic.main.fragment_reportar_evento.view.*
 import java.util.*
 
@@ -24,7 +29,10 @@ class ReportarEventoFragment : Fragment() {
         fun newInstance() = ReportarEventoFragment()
     }
 
-    private lateinit var viewModel: AdministracionEventosViewModel
+    private val viewModel: AdministracionEventosViewModel by viewModels {
+        InjectorUtils.provideAdministracionEventosViewModelFactory(requireContext())
+    }
+
     private lateinit var plantaEtv: EditText
     private lateinit var areaEtv: EditText
     private lateinit var subareaEtv: EditText
@@ -69,8 +77,6 @@ class ReportarEventoFragment : Fragment() {
         nombreSolicitanteEtv = root.etv_report_event_nombre_solicitante_value
         contactoSolicitanteEtv = root.etv_report_event_contacto_solicitante_value
         correoSolicitanteEtv = root.etv_report_event_correo_solicitante_value
-
-
 
         ubicacionTv.setOnClickListener{
             hideKeyboard()
@@ -151,7 +157,6 @@ class ReportarEventoFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(AdministracionEventosViewModel::class.java)
         viewModel.eventsCount.observe(viewLifecycleOwner, Observer {eventsCount ->
             this.currentEventsCount = eventsCount
         })

@@ -11,6 +11,7 @@ import android.widget.ImageButton
 import android.widget.PopupWindow
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -18,6 +19,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aleph5.andicpmetmex.R
 import com.aleph5.andicpmetmex.adapters.AdministracionEventosAdapter
+import com.aleph5.andicpmetmex.utilityclasses.InjectorUtils
+import com.aleph5.andicpmetmex.viewmodels.AdministracionEventosViewModel
 import kotlinx.android.synthetic.main.fragment_administracion_eventos.view.*
 import kotlinx.android.synthetic.main.popup_window_guardia_info_layout.view.*
 
@@ -27,7 +30,9 @@ class AdministracionEventosFragment : Fragment() {
         fun newInstance() = AdministracionEventosFragment()
     }
 
-    private lateinit var administracionEventosViewModel: AdministracionEventosViewModel
+    private val viewModel: AdministracionEventosViewModel by viewModels {
+        InjectorUtils.provideAdministracionEventosViewModelFactory(requireContext())
+    }
 //    private lateinit var eventDataList : ArrayList<EventEntity>
     private var adapter = AdministracionEventosAdapter()
 
@@ -76,8 +81,7 @@ class AdministracionEventosFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        administracionEventosViewModel = ViewModelProvider(this).get(AdministracionEventosViewModel::class.java)
-        administracionEventosViewModel.allEvents.observe(viewLifecycleOwner, Observer { events ->
+        viewModel.allEvents.observe(viewLifecycleOwner, Observer { events ->
             events?.let { adapter.setEvents(it) }
         })
     }

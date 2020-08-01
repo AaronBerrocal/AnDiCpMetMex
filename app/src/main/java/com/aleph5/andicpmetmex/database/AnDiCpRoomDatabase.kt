@@ -21,7 +21,7 @@ import java.util.*
 //    exportSchema = false
 )
 @TypeConverters(Converters::class)
-public abstract class AnDiCpRoomDatabase : RoomDatabase() {
+abstract class AnDiCpRoomDatabase : RoomDatabase() {
 
     abstract fun EventDao() : EventDao
 
@@ -34,38 +34,25 @@ public abstract class AnDiCpRoomDatabase : RoomDatabase() {
     companion object{
 
         @Volatile
-        private var INSTANCE: AnDiCpRoomDatabase? = null
+        private var instance: AnDiCpRoomDatabase? = null
 
-        fun getDatabase(
+        fun getInstance(
             context: Context,
             scope: CoroutineScope
         ): AnDiCpRoomDatabase {
-
-            val tempInstance =
-                INSTANCE
-            if(tempInstance != null){
-
-                return tempInstance
-
-            }
-
-            synchronized(this){
-
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    AnDiCpRoomDatabase::class.java,
-                    "andi_cp_database"
-                )
-//                .addMigrations()
-                .addCallback(AnDiCpRoomDatabaseCallback(scope))
-                .fallbackToDestructiveMigration()
-                .build()
-
-                INSTANCE = instance
-
-                return instance
+            return instance ?: synchronized(this){
+                instance ?: buildDatabase(context, scope).also{ instance = it}
             }
         }
+
+        private fun buildDatabase(context: Context, scope: CoroutineScope): AnDiCpRoomDatabase{
+            return Room.databaseBuilder(context, AnDiCpRoomDatabase::class.java, "andi_cp_database")
+                .fallbackToDestructiveMigration()
+//                .addMigrations()
+                .addCallback(AnDiCpRoomDatabaseCallback(scope))
+                .build()
+        }
+
     }
 
     private class AnDiCpRoomDatabaseCallback(
@@ -75,7 +62,7 @@ public abstract class AnDiCpRoomDatabase : RoomDatabase() {
         override fun onOpen(db: SupportSQLiteDatabase) {
             super.onOpen(db)
 
-            INSTANCE?.let { database ->
+            instance?.let { database ->
                 scope.launch {
                     populateDatabase(database.EventDao())
                 }
@@ -166,7 +153,44 @@ public abstract class AnDiCpRoomDatabase : RoomDatabase() {
                 null
             )
             eventDao.insertEvent(newEvent)
-
         }
+
     }
 }
+
+//        suspend fun populateDatabasePlants(plantDao: PlantDao) {
+//
+//            plantDao.deleteAllPlants()
+//
+//            val plants = ArrayList<PlantEntity>()
+//
+//            plants.add(
+//                PlantEntity(
+//                    0,
+//                    "PLN001",
+//                    "Refinería",
+//                    "PLN001 - Refinería",
+//                    1
+//                )
+//            )
+//            plants.add(
+//                PlantEntity(
+//                    0,
+//                    "PLN002",
+//                    "Aleazin",
+//                    "PLN002 - Aleazin",
+//                    1
+//                )
+//            )
+//            plants.add(
+//                PlantEntity(
+//                    0,
+//                    "PLN003",
+//                    "Zinc",
+//                    "PLN003 - Zinc",
+//                    1
+//                )
+//            )
+//
+//            plantDao.bulkInsertPlants(plants)
+//        }

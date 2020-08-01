@@ -1,4 +1,4 @@
-package com.aleph5.andicpmetmex.entities.catalogueentities
+package com.aleph5.andicpmetmex.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
