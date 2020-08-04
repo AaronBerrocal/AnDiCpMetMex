@@ -17,7 +17,7 @@ import java.util.*
 data class EventEntity(
 
     @PrimaryKey(autoGenerate = true)
-    val uid: Int,
+    val uid: Long,
 
     @ColumnInfo(name = "id_evento")
     val idEvento: String,

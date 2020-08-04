@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "0c1d7a7f8172476cf0ff98b517d82ae0",
+    "identityHash": "e697537a2938263fb1de93c9fa4717e1",
     "entities": [
       {
         "tableName": "eventos",
@@ -230,12 +230,354 @@
           }
         ],
         "foreignKeys": []
+      },
+      {
+        "tableName": "a02_plantas",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id_planta` TEXT NOT NULL, `planta` TEXT NOT NULL, `id_usuario` TEXT, `activo` INTEGER NOT NULL, `signature` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idPlanta",
+            "columnName": "id_planta",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "planta",
+            "columnName": "planta",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idUsuario",
+            "columnName": "id_usuario",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "activo",
+            "columnName": "activo",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "signature",
+            "columnName": "signature",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_a02_plantas_id_planta",
+            "unique": true,
+            "columnNames": [
+              "id_planta"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_a02_plantas_id_planta` ON `${TABLE_NAME}` (`id_planta`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "a03_areas",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id_area` TEXT NOT NULL, `area` TEXT NOT NULL, `id_usuario` TEXT, `descripcion` TEXT, `activo` INTEGER NOT NULL, `id_planta` TEXT NOT NULL, `signature` TEXT NOT NULL, FOREIGN KEY(`id_planta`) REFERENCES `a02_plantas`(`id_planta`) ON UPDATE NO ACTION ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idArea",
+            "columnName": "id_area",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "area",
+            "columnName": "area",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idUsuario",
+            "columnName": "id_usuario",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "descripcion",
+            "columnName": "descripcion",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "activo",
+            "columnName": "activo",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idPlanta",
+            "columnName": "id_planta",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "signature",
+            "columnName": "signature",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_a03_areas_id_area",
+            "unique": true,
+            "columnNames": [
+              "id_area"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_a03_areas_id_area` ON `${TABLE_NAME}` (`id_area`)"
+          },
+          {
+            "name": "index_a03_areas_id_area_id_planta",
+            "unique": true,
+            "columnNames": [
+              "id_area",
+              "id_planta"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_a03_areas_id_area_id_planta` ON `${TABLE_NAME}` (`id_area`, `id_planta`)"
+          },
+          {
+            "name": "index_a03_areas_id_planta",
+            "unique": false,
+            "columnNames": [
+              "id_planta"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_a03_areas_id_planta` ON `${TABLE_NAME}` (`id_planta`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "a02_plantas",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "id_planta"
+            ],
+            "referencedColumns": [
+              "id_planta"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "a04_subareas",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id_subarea` TEXT NOT NULL, `subarea` TEXT NOT NULL, `id_usuario` TEXT, `descripcion` TEXT, `activo` INTEGER NOT NULL, `id_planta` TEXT NOT NULL, `id_area` TEXT NOT NULL, `signature` TEXT NOT NULL, FOREIGN KEY(`id_area`) REFERENCES `a03_areas`(`id_area`) ON UPDATE NO ACTION ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED)",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idSubarea",
+            "columnName": "id_subarea",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "subarea",
+            "columnName": "subarea",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idUsuario",
+            "columnName": "id_usuario",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "descripcion",
+            "columnName": "descripcion",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "activo",
+            "columnName": "activo",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idPlanta",
+            "columnName": "id_planta",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idArea",
+            "columnName": "id_area",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "signature",
+            "columnName": "signature",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_a04_subareas_id_subarea",
+            "unique": true,
+            "columnNames": [
+              "id_subarea"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_a04_subareas_id_subarea` ON `${TABLE_NAME}` (`id_subarea`)"
+          },
+          {
+            "name": "index_a04_subareas_id_subarea_id_area",
+            "unique": true,
+            "columnNames": [
+              "id_subarea",
+              "id_area"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_a04_subareas_id_subarea_id_area` ON `${TABLE_NAME}` (`id_subarea`, `id_area`)"
+          },
+          {
+            "name": "index_a04_subareas_id_area",
+            "unique": false,
+            "columnNames": [
+              "id_area"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_a04_subareas_id_area` ON `${TABLE_NAME}` (`id_area`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "a03_areas",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "id_area"
+            ],
+            "referencedColumns": [
+              "id_area"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "a05_equipo_planta",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id_equipo` TEXT NOT NULL, `equipo_planta` TEXT NOT NULL, `descripcion` TEXT, `activo` INTEGER NOT NULL, `id_planta` TEXT NOT NULL, `id_area` TEXT NOT NULL, `id_subarea` TEXT NOT NULL, `signature` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idEquipo",
+            "columnName": "id_equipo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "equipoPlanta",
+            "columnName": "equipo_planta",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "descripcion",
+            "columnName": "descripcion",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "activo",
+            "columnName": "activo",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idPlanta",
+            "columnName": "id_planta",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idArea",
+            "columnName": "id_area",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idSubrea",
+            "columnName": "id_subarea",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "signature",
+            "columnName": "signature",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_a05_equipo_planta_id_equipo",
+            "unique": true,
+            "columnNames": [
+              "id_equipo"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_a05_equipo_planta_id_equipo` ON `${TABLE_NAME}` (`id_equipo`)"
+          }
+        ],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0c1d7a7f8172476cf0ff98b517d82ae0')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e697537a2938263fb1de93c9fa4717e1')"
     ]
   }
 }

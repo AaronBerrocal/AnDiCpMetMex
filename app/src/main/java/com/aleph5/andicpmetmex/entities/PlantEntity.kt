@@ -16,15 +16,18 @@ import androidx.room.PrimaryKey
 data class PlantEntity (
 
     @PrimaryKey(autoGenerate = true)
-    val uid: Int,
+    val uid: Long,
 
     @ColumnInfo(name = "id_planta")
     val idPlanta: String,
 
     val planta: String,
 
-    val signature: String, // idPlanta+" - "+planta
+    @ColumnInfo(name = "id_usuario")
+    val idUsuario: String?,
 
-    val activo: Int //0 or 1
+    val activo: Int, //0 or 1
+
+    val signature: String // idPlanta+" - "+planta
 
 )

@@ -6,9 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -16,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.aleph5.andicpmetmex.R
 import com.aleph5.andicpmetmex.entities.EventEntity
+import com.aleph5.andicpmetmex.entities.PlantEntity
 import com.aleph5.andicpmetmex.utilityclasses.InjectorUtils
 import com.aleph5.andicpmetmex.utilityclasses.expandCollapse
 import com.aleph5.andicpmetmex.utilityclasses.hideKeyboard
@@ -33,7 +32,8 @@ class ReportarEventoFragment : Fragment() {
         InjectorUtils.provideAdministracionEventosViewModelFactory(requireContext())
     }
 
-    private lateinit var plantaEtv: EditText
+    private lateinit var plantaActv: AutoCompleteTextView
+    private var plantAvailableSignatureList= mutableListOf<String>()
     private lateinit var areaEtv: EditText
     private lateinit var subareaEtv: EditText
     private lateinit var equipoEtv: EditText
@@ -48,6 +48,7 @@ class ReportarEventoFragment : Fragment() {
     private lateinit var correoSolicitanteEtv: EditText
 
     private var currentEventsCount: Int = 0
+    private lateinit var plantAdapter: ArrayAdapter<String>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,7 +67,7 @@ class ReportarEventoFragment : Fragment() {
         val cancelMbtn = root.mbtn_report_event_cancel
         val saveMbtn = root.mbtn_report_event_save
 
-        plantaEtv = root.etv_report_event_planta_value
+        plantaActv = root.actv_report_event_planta_value
         areaEtv = root.etv_report_event_area_value
         subareaEtv = root.etv_report_event_subarea_value
         equipoEtv = root.etv_report_event_equipo_planta_value
@@ -93,6 +94,17 @@ class ReportarEventoFragment : Fragment() {
             solicitudLl.expandCollapse()
         }
 
+        plantAdapter = ArrayAdapter<String>(
+            requireContext(),
+            android.R.layout.simple_list_item_1,
+            plantAvailableSignatureList
+        )
+        plantaActv.setAdapter(plantAdapter)
+
+        plantaActv.setOnClickListener {
+            plantaActv.showDropDown()
+        }
+
         cancelMbtn.setOnClickListener {
             hideKeyboard()
             findNavController().navigateUp()
@@ -100,12 +112,15 @@ class ReportarEventoFragment : Fragment() {
 
         saveMbtn.setOnClickListener {
             hideKeyboard()
+
+            val selectedPlantIdAndName = plantaActv.text.toString().split(" - ")
+
             if(validateEventReportData()){
                 viewModel.insertEventVm(EventEntity(
                     0,
                     "evnt${currentEventsCount + 1}",
-                    "refn${currentEventsCount + 1}",
-                    plantaEtv.text.toString(),
+                    selectedPlantIdAndName[0],
+                    selectedPlantIdAndName[1],
                     "area${currentEventsCount + 1}",
                     areaEtv.text.toString(),
                     "sbra${currentEventsCount + 1}",
@@ -161,11 +176,22 @@ class ReportarEventoFragment : Fragment() {
             this.currentEventsCount = eventsCount
         })
 
+        viewModel.allPlantSignatures.observe(viewLifecycleOwner, Observer {signatures ->
+            plantAdapter.clear()
+            plantAdapter.addAll(signatures)
+            plantAdapter.notifyDataSetChanged()
+        })
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        hideKeyboard()
     }
 
     private fun validateEventReportData() : Boolean {
 
-        return !(plantaEtv.text.trim().isEmpty() ||
+        return !(plantaActv.text.trim().isEmpty() ||
                 areaEtv.text.trim().isEmpty() ||
                 subareaEtv.text.trim().isEmpty() ||
                 equipoEtv.text.trim().isEmpty() ||

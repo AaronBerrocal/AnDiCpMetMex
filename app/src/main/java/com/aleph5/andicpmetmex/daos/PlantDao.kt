@@ -1,5 +1,6 @@
 package com.aleph5.andicpmetmex.daos
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.aleph5.andicpmetmex.entities.PlantEntity
 
@@ -7,10 +8,7 @@ import com.aleph5.andicpmetmex.entities.PlantEntity
 interface PlantDao {
 
     @Query("SELECT signature FROM a02_plantas WHERE activo = 1")
-    fun loadAllPlantSignatures(): List<String>
-
-    @Query("SELECT * FROM a02_plantas WHERE signature = :currentSignature and activo = 1")
-    fun searchBySignature(currentSignature: String): PlantEntity
+    fun loadAllPlantSignatures(): LiveData<List<String>>
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)

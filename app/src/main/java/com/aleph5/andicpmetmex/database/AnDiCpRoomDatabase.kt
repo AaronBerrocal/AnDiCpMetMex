@@ -1,21 +1,23 @@
 package com.aleph5.andicpmetmex.database
 
 import android.content.Context
-import android.os.Build
 import androidx.room.*
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.aleph5.andicpmetmex.daos.EventDao
-import com.aleph5.andicpmetmex.entities.EventEntity
+import com.aleph5.andicpmetmex.daos.*
+import com.aleph5.andicpmetmex.entities.*
 import com.aleph5.andicpmetmex.utilityclasses.Converters
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 @Database(
-    entities = arrayOf(EventEntity::class),
+    entities = [
+        EventEntity::class,
+        PlantEntity::class,
+        AreaEntity::class,
+        SubareaEntity::class,
+        EquipmentEntity::class
+    ],
     version = 1
 //    ,
 //    exportSchema = false
@@ -23,7 +25,11 @@ import java.util.*
 @TypeConverters(Converters::class)
 abstract class AnDiCpRoomDatabase : RoomDatabase() {
 
-    abstract fun EventDao() : EventDao
+    abstract fun eventDao(): EventDao
+    abstract fun plantDao(): PlantDao
+    abstract fun areaDao(): AreaDao
+    abstract fun subareaDao(): SubareaDao
+    abstract fun equipmentDao(): EquipmentDao
 
 //    val MIGRATION_1_2 = object : Migration(1, 2) {
 //        override fun migrate(database: SupportSQLiteDatabase) {
@@ -31,7 +37,7 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
 //        }
 //    }
 
-    companion object{
+    companion object {
 
         @Volatile
         private var instance: AnDiCpRoomDatabase? = null
@@ -40,12 +46,12 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
             context: Context,
             scope: CoroutineScope
         ): AnDiCpRoomDatabase {
-            return instance ?: synchronized(this){
-                instance ?: buildDatabase(context, scope).also{ instance = it}
+            return instance ?: synchronized(this) {
+                instance ?: buildDatabase(context, scope).also { instance = it }
             }
         }
 
-        private fun buildDatabase(context: Context, scope: CoroutineScope): AnDiCpRoomDatabase{
+        private fun buildDatabase(context: Context, scope: CoroutineScope): AnDiCpRoomDatabase {
             return Room.databaseBuilder(context, AnDiCpRoomDatabase::class.java, "andi_cp_database")
                 .fallbackToDestructiveMigration()
 //                .addMigrations()
@@ -57,30 +63,48 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
 
     private class AnDiCpRoomDatabaseCallback(
         private val scope: CoroutineScope
-    ) : RoomDatabase.Callback(){
+    ) : RoomDatabase.Callback() {
 
         override fun onOpen(db: SupportSQLiteDatabase) {
             super.onOpen(db)
 
             instance?.let { database ->
                 scope.launch {
-                    populateDatabase(database.EventDao())
+                    populateDatabase(
+                        database.eventDao(),
+                        database.plantDao(),
+                        database.areaDao(),
+                        database.subareaDao(),
+                        database.equipmentDao()
+                    )
                 }
             }
 
         }
 
-        override fun onCreate(db: SupportSQLiteDatabase) {
-            super.onCreate(db)
-        }
+//        override fun onCreate(db: SupportSQLiteDatabase) {
+//            super.onCreate(db)
+//        }
 
-        suspend fun populateDatabase(eventDao: EventDao){
+        suspend fun populateDatabase(
+            eventDao: EventDao,
+            plantDao: PlantDao,
+            areaDao: AreaDao,
+            subareaDao: SubareaDao,
+            equipmentDao: EquipmentDao
+        ) {
 
             eventDao.deleteAllEvents()
+            plantDao.deleteAllPlants()
+            areaDao.deleteAllAreas()
+            subareaDao.deleteAllSubareas()
+            equipmentDao.deleteAllEquipment()
+
+            //region inject event data
 
             var newEvent = EventEntity(
                 0,
-                "evnt0001",
+                "vnt1",
                 "refn0001",
                 "Refineria",
                 "area0001",
@@ -118,7 +142,7 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
 
             newEvent = EventEntity(
                 0,
-                "evnt0002",
+                "vnt2",
                 "refn0001",
                 "Refineria",
                 "area0001",
@@ -153,44 +177,99 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
                 null
             )
             eventDao.insertEvent(newEvent)
+
+            //endregion inject event data
+
+            //region inject plant data
+            val plants = ArrayList<PlantEntity>()
+
+            plants.add(
+                PlantEntity(
+                    0,
+                    "ref",
+                    "Refinería",
+                    "jmunoz",
+                    1,
+                    "ref - Refinería"
+                )
+            )
+            plants.add(
+                PlantEntity(
+                    0,
+                    "alz",
+                    "Aleazín",
+                    "jmunoz",
+                    1,
+                    "alz - Aleazín"
+                )
+            )
+            plants.add(
+                PlantEntity(
+                    0,
+                    "zinc",
+                    "Zinc",
+                    "fherrera",
+                    1,
+                    "zinc - Zinc"
+                )
+            )
+            plants.add(
+                PlantEntity(
+                    0,
+                    "ftr",
+                    "Fertirey",
+                    "jlam",
+                    1,
+                    "ftr - Fertirey"
+                )
+            )
+            plants.add(
+                PlantEntity(
+                    0,
+                    "aa",
+                    "Areas Apoyo",
+                    "rjacobo",
+                    1,
+                    "aa - Areas Apoyo"
+                )
+            )
+            plants.add(
+                PlantEntity(
+                    0,
+                    "fnc",
+                    "Fundición",
+                    "mmoreno",
+                    1,
+                    "fnc - Fundición"
+                )
+            )
+            plants.add(
+                PlantEntity(
+                    0,
+                    "brm",
+                    "Bermejillo",
+                    "hromero",
+                    1,
+                    "brm - Bermejillo"
+                )
+            )
+            plants.add(
+                PlantEntity(
+                    0,
+                    "tag",
+                    "Tratamiento de Aguas",
+                    "hromero",
+                    1,
+                    "tag - Tratamiento de Aguas"
+                )
+            )
+
+
+            plantDao.bulkInsertPlants(plants)
+            //endregion inject plant data
+
+
         }
 
     }
 }
-
-//        suspend fun populateDatabasePlants(plantDao: PlantDao) {
-//
-//            plantDao.deleteAllPlants()
-//
-//            val plants = ArrayList<PlantEntity>()
-//
-//            plants.add(
-//                PlantEntity(
-//                    0,
-//                    "PLN001",
-//                    "Refinería",
-//                    "PLN001 - Refinería",
-//                    1
-//                )
-//            )
-//            plants.add(
-//                PlantEntity(
-//                    0,
-//                    "PLN002",
-//                    "Aleazin",
-//                    "PLN002 - Aleazin",
-//                    1
-//                )
-//            )
-//            plants.add(
-//                PlantEntity(
-//                    0,
-//                    "PLN003",
-//                    "Zinc",
-//                    "PLN003 - Zinc",
-//                    1
-//                )
-//            )
-//
-//            plantDao.bulkInsertPlants(plants)
-//        }

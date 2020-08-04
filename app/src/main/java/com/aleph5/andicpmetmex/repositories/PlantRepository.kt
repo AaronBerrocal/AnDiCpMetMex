@@ -1,15 +1,12 @@
 package com.aleph5.andicpmetmex.repositories
 
+import androidx.lifecycle.LiveData
 import com.aleph5.andicpmetmex.daos.PlantDao
 import com.aleph5.andicpmetmex.entities.PlantEntity
 
 class PlantRepository private constructor(private val plantDao: PlantDao) {
 
-    val plantSignatures: List<String> = plantDao.loadAllPlantSignatures()
-
-    fun searchBySignatureRepo(currentSignature: String) : PlantEntity {
-        return plantDao.searchBySignature(currentSignature)
-    }
+    val plantSignatures: LiveData<List<String>> = plantDao.loadAllPlantSignatures()
 
     suspend fun bulkInsertPlantsRepo(newPlants: List<PlantEntity>){
         plantDao.bulkInsertPlants(newPlants)
@@ -28,6 +25,4 @@ class PlantRepository private constructor(private val plantDao: PlantDao) {
                 instance ?: PlantRepository(plantDao).also { instance = it }
             }
     }
-
-
 }
