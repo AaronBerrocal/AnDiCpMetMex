@@ -73,8 +73,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="@dimen/event_title_font_size_normal"
-                        android:ellipsize="end"
-                        android:maxLines="1"
                         android:hint="Seleccione una Planta"
                         android:completionHint="Seleccione una Planta"
                         android:completionThreshold="1"
@@ -99,13 +97,15 @@
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/card_font_size_normal"/>
 
-                    <EditText
-                        android:id="@+id/etv_report_event_area_value"
+                    <AutoCompleteTextView
+                        android:id="@+id/actv_report_event_area_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="@dimen/event_title_font_size_normal"
-                        android:hint="Nombre del Área"
+                        android:hint="Seleccione un Área"
+                        android:completionHint="Seleccione un Área"
+                        android:completionThreshold="1"
                         android:gravity="end" />
 
                 </LinearLayout>

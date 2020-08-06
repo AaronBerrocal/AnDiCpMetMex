@@ -6,7 +6,7 @@ import com.aleph5.andicpmetmex.entities.PlantEntity
 
 class PlantRepository private constructor(private val plantDao: PlantDao) {
 
-    val plantSignatures: LiveData<List<String>> = plantDao.loadAllPlantSignatures()
+    val plants: LiveData<List<PlantEntity>> = plantDao.loadAllPlants()
 
     suspend fun bulkInsertPlantsRepo(newPlants: List<PlantEntity>){
         plantDao.bulkInsertPlants(newPlants)

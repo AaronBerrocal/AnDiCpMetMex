@@ -9,6 +9,7 @@ import com.aleph5.andicpmetmex.utilityclasses.Converters
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.util.*
+import kotlin.collections.ArrayList
 
 @Database(
     entities = [
@@ -16,7 +17,8 @@ import java.util.*
         PlantEntity::class,
         AreaEntity::class,
         SubareaEntity::class,
-        EquipmentEntity::class
+        EquipmentEntity::class,
+        SystemTypeEntity::class
     ],
     version = 1
 //    ,
@@ -30,6 +32,7 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
     abstract fun areaDao(): AreaDao
     abstract fun subareaDao(): SubareaDao
     abstract fun equipmentDao(): EquipmentDao
+    abstract fun systemTypeDao(): SystemTypeDao
 
 //    val MIGRATION_1_2 = object : Migration(1, 2) {
 //        override fun migrate(database: SupportSQLiteDatabase) {
@@ -75,7 +78,8 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
                         database.plantDao(),
                         database.areaDao(),
                         database.subareaDao(),
-                        database.equipmentDao()
+                        database.equipmentDao(),
+                        database.systemTypeDao()
                     )
                 }
             }
@@ -91,7 +95,8 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
             plantDao: PlantDao,
             areaDao: AreaDao,
             subareaDao: SubareaDao,
-            equipmentDao: EquipmentDao
+            equipmentDao: EquipmentDao,
+            systemTypeDao: SystemTypeDao
         ) {
 
             eventDao.deleteAllEvents()
@@ -99,6 +104,7 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
             areaDao.deleteAllAreas()
             subareaDao.deleteAllSubareas()
             equipmentDao.deleteAllEquipment()
+            systemTypeDao.deleteAllSystemTypes()
 
             //region inject event data
 
@@ -267,6 +273,133 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
 
             plantDao.bulkInsertPlants(plants)
             //endregion inject plant data
+
+            //region inject area data
+            val areas = ArrayList<AreaEntity>()
+
+            areas.add(
+                AreaEntity(
+                    0,
+                    "aptd",
+                    "Apartado",
+                    "jlam;gmarquez",
+                    null,
+                    1,
+                    "ref",
+                    "aptd - Apartado"
+                )
+            )
+            areas.add(
+                AreaEntity(
+                    0,
+                    "csref",
+                    "Casas de Sacos",
+                    "jlam",
+                    null,
+                    1,
+                    "ref",
+                    "csref - Casas de Sacos"
+                )
+            )
+            areas.add(
+                AreaEntity(
+                    0,
+                    "zamak",
+                    "zamak",
+                    "jmunoz",
+                    null,
+                    1,
+                    "alz",
+                    "zamak - zamak"
+                )
+            )
+            areas.add(
+                AreaEntity(
+                    0,
+                    "csalz",
+                    "casa de sacos",
+                    "jmunoz",
+                    null,
+                    1,
+                    "alz",
+                    "csalz - casa de sacos"
+                )
+            )
+            areas.add(
+                AreaEntity(
+                    0,
+                    "tstz",
+                    "Tostación",
+                    "hromero",
+                    null,
+                    1,
+                    "zinc",
+                    "tstz - Tostación"
+                )
+            )
+            areas.add(
+                AreaEntity(
+                    0,
+                    "alm",
+                    "Almacenamiento de amoniaco",
+                    "jlam",
+                    null,
+                    1,
+                    "ftr",
+                    "alm - Almacenamiento de amoniaco"
+                )
+            )
+            areas.add(
+                AreaEntity(
+                    0,
+                    "lc",
+                    "Laboratorio Central",
+                    "apalos;gmarquez",
+                    null,
+                    1,
+                    "aa",
+                    "lc - Laboratorio Central"
+                )
+            )
+            areas.add(
+                AreaEntity(
+                    0,
+                    "hns",
+                    "Hornos",
+                    "apalos;ehernandez",
+                    null,
+                    1,
+                    "fnc",
+                    "hns - Hornos"
+                )
+            )
+            areas.add(
+                AreaEntity(
+                    0,
+                    "hrt",
+                    "Horno rotatorio",
+                    "hromero",
+                    null,
+                    1,
+                    "brm",
+                    "hrt - Horno rotatorio"
+                )
+            )
+            areas.add(
+                AreaEntity(
+                    0,
+                    "p2",
+                    "Planta 2",
+                    "hromero",
+                    null,
+                    1,
+                    "tag",
+                    "p2 - Planta 2"
+                )
+            )
+
+            areaDao.bulkInsertAreas(areas)
+            //endregion inject area data
 
 
         }

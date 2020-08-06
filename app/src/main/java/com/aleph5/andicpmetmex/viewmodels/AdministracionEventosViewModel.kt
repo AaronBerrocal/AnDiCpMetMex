@@ -5,20 +5,24 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.aleph5.andicpmetmex.entities.*
 import com.aleph5.andicpmetmex.repositories.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 class AdministracionEventosViewModel(
     private val eventRepository: EventRepository,
     private val plantRepository: PlantRepository,
     private val areaRepository: AreaRepository,
     private val subareaRepository: SubareaRepository,
-    private val equipmentRepository: EquipmentRepository
+    private val equipmentRepository: EquipmentRepository,
+    private val systemTypeRepository: SystemTypeRepository
 ) : ViewModel() {
 
     val allEvents = eventRepository.events
     val eventsCount = eventRepository.eventsCount
-    val allPlantSignatures = plantRepository.plantSignatures
-    val allAreaSignatures = areaRepository.areaSignatures
+    val allPlants = plantRepository.plants
+    val allAreas = areaRepository.areas
     val allSubareaSignatures = subareaRepository.subareaSignatures
     val allEquipmentSignatures = equipmentRepository.equipmentSignatures
 
@@ -47,13 +51,9 @@ class AdministracionEventosViewModel(
     //endregion Plant Methods
 
     //region Area Methods
-    fun searchAreaSignaturesByPlantIdVm(selectedPlantId: String): LiveData<List<String>>{
-        return runBlocking {
-            viewModelScope.async {
-                areaRepository.searchAreaSignaturesByPlantIdRepo(selectedPlantId)
-            }.await()
-        }
-    }
+
+    fun searchAreaSignaturesByPlantIdVm(selectedPlantId: String) =
+        areaRepository.searchAreaSignaturesByPlantIdRepo(selectedPlantId)
 
     fun bulkInsertAreasVm(newAreas: List<AreaEntity>): Job = viewModelScope.launch {
         areaRepository.bulkInsertAreasRepo(newAreas)
@@ -95,5 +95,21 @@ class AdministracionEventosViewModel(
         equipmentRepository.deleteAllEquipmentRepo()
     }
     //endregion Equipment Methods
+
+    //region SystemType Methods
+    suspend fun searchSystemTypesByModuleIdVm(selectedModuleId: String): LiveData<List<String>>{
+        return withContext(viewModelScope.coroutineContext){
+            systemTypeRepository.searchSystemTypesByModuleIdRepo(selectedModuleId)
+        }
+    }
+
+    fun bulkInsertSystemTypesVm(newSystemTypes: List<SystemTypeEntity>): Job = viewModelScope.launch {
+        systemTypeRepository.bulkInsertSystemTypesRepo(newSystemTypes)
+    }
+
+    fun deleteAllSystemTypesVm(): Job = viewModelScope.launch {
+        equipmentRepository.deleteAllEquipmentRepo()
+    }
+    //endregion SystemType Methods
 
 }

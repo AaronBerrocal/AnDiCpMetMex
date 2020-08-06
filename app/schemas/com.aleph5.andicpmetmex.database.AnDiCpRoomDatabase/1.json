@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "e697537a2938263fb1de93c9fa4717e1",
+    "identityHash": "823d3d8ef58f6778c0c4e3d66be6c343",
     "entities": [
       {
         "tableName": "eventos",
@@ -572,12 +572,78 @@
           }
         ],
         "foreignKeys": []
+      },
+      {
+        "tableName": "a06_tipo_sistema",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id_tipo_sistema` TEXT NOT NULL, `tipo_sistema` TEXT NOT NULL, `descripcion` TEXT, `activo` INTEGER NOT NULL, `id_modulo` TEXT NOT NULL, `signature` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idTipoSistema",
+            "columnName": "id_tipo_sistema",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tipoSistema",
+            "columnName": "tipo_sistema",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "descripcion",
+            "columnName": "descripcion",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "activo",
+            "columnName": "activo",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idModulo",
+            "columnName": "id_modulo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "signature",
+            "columnName": "signature",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_a06_tipo_sistema_id_tipo_sistema_id_modulo",
+            "unique": true,
+            "columnNames": [
+              "id_tipo_sistema",
+              "id_modulo"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_a06_tipo_sistema_id_tipo_sistema_id_modulo` ON `${TABLE_NAME}` (`id_tipo_sistema`, `id_modulo`)"
+          }
+        ],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'e697537a2938263fb1de93c9fa4717e1')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '823d3d8ef58f6778c0c4e3d66be6c343')"
     ]
   }
 }

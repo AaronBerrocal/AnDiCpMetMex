@@ -7,8 +7,8 @@ import com.aleph5.andicpmetmex.entities.AreaEntity
 @Dao
 interface AreaDao {
 
-    @Query("SELECT signature FROM a03_areas WHERE activo = 1")
-    fun loadAllAreaSignatures(): LiveData<List<String>>
+    @Query("SELECT * FROM a03_areas WHERE activo = 1")
+    fun loadAllAreas(): LiveData<List<AreaEntity>>
 
     @Query("SELECT signature FROM a03_areas WHERE id_planta = :selectedPlantId AND activo = 1 ")
     fun searchAreaSignaturesByPlantId(selectedPlantId: String): LiveData<List<String>>

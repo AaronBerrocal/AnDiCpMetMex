@@ -33,17 +33,8 @@ class AdministracionEventosFragment : Fragment() {
     private val viewModel: AdministracionEventosViewModel by viewModels {
         InjectorUtils.provideAdministracionEventosViewModelFactory(requireContext())
     }
-//    private lateinit var eventDataList : ArrayList<EventEntity>
-    private var adapter = AdministracionEventosAdapter()
 
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//
-//        administracionEventosViewModel = ViewModelProvider(this).get(AdministracionEventosViewModel::class.java)
-//        administracionEventosViewModel.allEvents.observe(this, Observer { events ->
-//            events?.let { adapter.setEvents(it) }
-//        })
-//    }
+    private var adapter = AdministracionEventosAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,11 +48,6 @@ class AdministracionEventosFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
-
-//        administracionEventosViewModel = ViewModelProvider(this).get(AdministracionEventosViewModel::class.java)
-//        administracionEventosViewModel.allEvents.observe(viewLifecycleOwner, Observer { events ->
-//            events?.let { adapter.setEvents(it) }
-//        })
 
         val showWardInfoBtn : ImageButton = root.btn_watch_info
 

@@ -1,8 +1,10 @@
 package com.aleph5.andicpmetmex.ui.eventos
 
 import android.app.AlertDialog
+import android.content.ContentValues.TAG
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,17 +12,18 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.aleph5.andicpmetmex.R
+import com.aleph5.andicpmetmex.adapters.AreaArrayAdapter
+import com.aleph5.andicpmetmex.adapters.PlantArrayAdapter
+import com.aleph5.andicpmetmex.entities.AreaEntity
 import com.aleph5.andicpmetmex.entities.EventEntity
 import com.aleph5.andicpmetmex.entities.PlantEntity
-import com.aleph5.andicpmetmex.utilityclasses.InjectorUtils
-import com.aleph5.andicpmetmex.utilityclasses.expandCollapse
-import com.aleph5.andicpmetmex.utilityclasses.hideKeyboard
+import com.aleph5.andicpmetmex.utilityclasses.*
 import com.aleph5.andicpmetmex.viewmodels.AdministracionEventosViewModel
 import kotlinx.android.synthetic.main.fragment_reportar_evento.view.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ReportarEventoFragment : Fragment() {
 
@@ -33,8 +36,9 @@ class ReportarEventoFragment : Fragment() {
     }
 
     private lateinit var plantaActv: AutoCompleteTextView
-    private var plantAvailableSignatureList= mutableListOf<String>()
-    private lateinit var areaEtv: EditText
+    private var plantList = ArrayList<PlantEntity>()
+    private lateinit var areaActv: AutoCompleteTextView
+    private var areaList = ArrayList<AreaEntity>()
     private lateinit var subareaEtv: EditText
     private lateinit var equipoEtv: EditText
     private lateinit var tipoSistemaEtv: EditText
@@ -48,7 +52,9 @@ class ReportarEventoFragment : Fragment() {
     private lateinit var correoSolicitanteEtv: EditText
 
     private var currentEventsCount: Int = 0
-    private lateinit var plantAdapter: ArrayAdapter<String>
+
+    private lateinit var plantCustomAdapter: PlantArrayAdapter
+    private lateinit var areaCustomAdapter: AreaArrayAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -68,7 +74,7 @@ class ReportarEventoFragment : Fragment() {
         val saveMbtn = root.mbtn_report_event_save
 
         plantaActv = root.actv_report_event_planta_value
-        areaEtv = root.etv_report_event_area_value
+        areaActv = root.actv_report_event_area_value
         subareaEtv = root.etv_report_event_subarea_value
         equipoEtv = root.etv_report_event_equipo_planta_value
         tipoSistemaEtv = root.etv_report_event_tipo_sistema_value
@@ -79,7 +85,7 @@ class ReportarEventoFragment : Fragment() {
         contactoSolicitanteEtv = root.etv_report_event_contacto_solicitante_value
         correoSolicitanteEtv = root.etv_report_event_correo_solicitante_value
 
-        ubicacionTv.setOnClickListener{
+        ubicacionTv.setOnClickListener {
             hideKeyboard()
             ubicacionLl.expandCollapse()
         }
@@ -94,15 +100,30 @@ class ReportarEventoFragment : Fragment() {
             solicitudLl.expandCollapse()
         }
 
-        plantAdapter = ArrayAdapter<String>(
-            requireContext(),
-            android.R.layout.simple_list_item_1,
-            plantAvailableSignatureList
-        )
-        plantaActv.setAdapter(plantAdapter)
+        plantCustomAdapter = PlantArrayAdapter(requireContext(), plantList)
+        plantaActv.setAdapter(plantCustomAdapter)
+//        plantaActv.setOnClickDropDown()
 
-        plantaActv.setOnClickListener {
-            plantaActv.showDropDown()
+        areaCustomAdapter = AreaArrayAdapter(requireContext(), areaList)
+        areaActv.setAdapter(areaCustomAdapter)
+//        areaActv.setOnClickDropDown()
+
+        plantaActv.setOnItemClickListener { adapterView: AdapterView<*>, _: View, i: Int, _: Long ->
+            areaActv.setText("")
+
+            val selectedPlant = adapterView.getItemAtPosition(i) as PlantEntity
+
+            if (areaList.size > 0) {
+                val filteredAreas = ArrayList<AreaEntity>()
+
+                for (a: AreaEntity in areaList) {
+                    if (a.idPlanta == selectedPlant.idPlanta) {
+                        filteredAreas.add(a)
+                    }
+                }
+
+                areaCustomAdapter.setAreas(filteredAreas)
+            }
         }
 
         cancelMbtn.setOnClickListener {
@@ -113,51 +134,53 @@ class ReportarEventoFragment : Fragment() {
         saveMbtn.setOnClickListener {
             hideKeyboard()
 
-            val selectedPlantIdAndName = plantaActv.text.toString().split(" - ")
+            val selectedPlantStr = plantaActv.text.toString().split(" - ")
+            val selectedAreaStr = areaActv.text.toString().split(" - ")
 
-            if(validateEventReportData()){
-                viewModel.insertEventVm(EventEntity(
-                    0,
-                    "evnt${currentEventsCount + 1}",
-                    selectedPlantIdAndName[0],
-                    selectedPlantIdAndName[1],
-                    "area${currentEventsCount + 1}",
-                    areaEtv.text.toString(),
-                    "sbra${currentEventsCount + 1}",
-                    subareaEtv.text.toString(),
-                    "eqpm${currentEventsCount + 1}",
-                    equipoEtv.text.toString(),
-                    "ctrl${currentEventsCount + 1}",
-                    tipoSistemaEtv.text.toString(),
-                    2, //2
-                    tipoEventoEtv.text.toString(), //Falla
-                    3, //1 //2
-                    prioridadEtv.text.toString(), //Alta //Media
-                    1, //2 //3 //4
-                    estatusEtv.text.toString(), //Diagnóstico //Ejecución //Pendiente
-                    nombreSolicitanteEtv.text.toString(),
-                    contactoSolicitanteEtv.text.toString(),
-                    correoSolicitanteEtv.text.toString(),
-                    Date(),
-                    null,
-                    null,
-                    null,
-                    null,
-                    1,
-                    "Atendido por CDP",
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null
+            if (validateEventReportData()) {
+                viewModel.insertEventVm(
+                    EventEntity(
+                        0,
+                        "evnt${currentEventsCount + 1}",
+                        selectedPlantStr[0],
+                        selectedPlantStr[1],
+                        selectedAreaStr[0],
+                        selectedAreaStr[1],
+                        "sbra${currentEventsCount + 1}",
+                        subareaEtv.text.toString(),
+                        "eqpm${currentEventsCount + 1}",
+                        equipoEtv.text.toString(),
+                        "ctrl${currentEventsCount + 1}",
+                        tipoSistemaEtv.text.toString(),
+                        2, //2
+                        tipoEventoEtv.text.toString(), //Falla
+                        3, //1 //2
+                        prioridadEtv.text.toString(), //Alta //Media
+                        1, //2 //3 //4
+                        estatusEtv.text.toString(), //Diagnóstico //Ejecución //Pendiente
+                        nombreSolicitanteEtv.text.toString(),
+                        contactoSolicitanteEtv.text.toString(),
+                        correoSolicitanteEtv.text.toString(),
+                        Date(),
+                        null,
+                        null,
+                        null,
+                        null,
+                        1,
+                        "Atendido por CDP",
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
 
                     )
                 )
 
                 findNavController().navigateUp()
 
-            }else{
+            } else {
                 val builder = AlertDialog.Builder(context)
                 builder.setMessage("Información faltante para Reportar Evento. Todos los campos son Requeridos.")
                 builder.setPositiveButton("Ententido") { _: DialogInterface, _: Int -> }
@@ -169,41 +192,50 @@ class ReportarEventoFragment : Fragment() {
         return root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+        override fun onActivityCreated(savedInstanceState: Bundle?) {
+            super.onActivityCreated(savedInstanceState)
 
-        viewModel.eventsCount.observe(viewLifecycleOwner, Observer {eventsCount ->
-            this.currentEventsCount = eventsCount
-        })
+            viewModel.eventsCount.observe(viewLifecycleOwner, Observer { eventsCount ->
+                this.currentEventsCount = eventsCount
+            })
 
-        viewModel.allPlantSignatures.observe(viewLifecycleOwner, Observer {signatures ->
-            plantAdapter.clear()
-            plantAdapter.addAll(signatures)
-            plantAdapter.notifyDataSetChanged()
-        })
+            viewModel.allPlants.observe(viewLifecycleOwner, Observer { plants ->
+                Log.d(TAG, "observing Plants: " + plants)
+                plants?.let {
+                    this.plantList = it as ArrayList<PlantEntity>
+                    plantCustomAdapter.setPlants(it)
+                }
+            })
+
+            viewModel.allAreas.observe(viewLifecycleOwner, Observer { areas ->
+                areas?.let {
+                    this.areaList = it as ArrayList<AreaEntity>
+                    areaCustomAdapter.setAreas(it)
+                }
+            })
+
+        }
+
+        override fun onDestroyView() {
+            super.onDestroyView()
+            hideKeyboard()
+        }
+
+        private fun validateEventReportData(): Boolean {
+
+            return !(plantaActv.text.trim().isEmpty() ||
+                    areaActv.text.trim().isEmpty() ||
+                    subareaEtv.text.trim().isEmpty() ||
+                    equipoEtv.text.trim().isEmpty() ||
+                    tipoSistemaEtv.text.trim().isEmpty() ||
+                    tipoEventoEtv.text.trim().isEmpty() ||
+                    prioridadEtv.text.trim().isEmpty() ||
+                    estatusEtv.text.trim().isEmpty() ||
+                    nombreSolicitanteEtv.text.trim().isEmpty() ||
+                    contactoSolicitanteEtv.text.trim().isEmpty() ||
+                    correoSolicitanteEtv.text.trim().isEmpty())
+
+        }
+
 
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        hideKeyboard()
-    }
-
-    private fun validateEventReportData() : Boolean {
-
-        return !(plantaActv.text.trim().isEmpty() ||
-                areaEtv.text.trim().isEmpty() ||
-                subareaEtv.text.trim().isEmpty() ||
-                equipoEtv.text.trim().isEmpty() ||
-                tipoSistemaEtv.text.trim().isEmpty() ||
-                tipoEventoEtv.text.trim().isEmpty() ||
-                prioridadEtv.text.trim().isEmpty() ||
-                estatusEtv.text.trim().isEmpty() ||
-                nombreSolicitanteEtv.text.trim().isEmpty() ||
-                contactoSolicitanteEtv.text.trim().isEmpty() ||
-                correoSolicitanteEtv.text.trim().isEmpty())
-
-    }
-
-
-}

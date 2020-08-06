@@ -7,8 +7,8 @@ import com.aleph5.andicpmetmex.entities.PlantEntity
 @Dao
 interface PlantDao {
 
-    @Query("SELECT signature FROM a02_plantas WHERE activo = 1")
-    fun loadAllPlantSignatures(): LiveData<List<String>>
+    @Query("SELECT * FROM a02_plantas WHERE activo = 1")
+    fun loadAllPlants(): LiveData<List<PlantEntity>>
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)

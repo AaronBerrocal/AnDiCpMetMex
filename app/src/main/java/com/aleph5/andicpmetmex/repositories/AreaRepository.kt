@@ -6,11 +6,9 @@ import com.aleph5.andicpmetmex.entities.AreaEntity
 
 class AreaRepository private constructor(private val areaDao: AreaDao){
 
-    val areaSignatures: LiveData<List<String>> = areaDao.loadAllAreaSignatures()
+    val areas: LiveData<List<AreaEntity>> = areaDao.loadAllAreas()
 
-    fun searchAreaSignaturesByPlantIdRepo(selectedPlantId: String): LiveData<List<String>>{
-        return areaDao.searchAreaSignaturesByPlantId(selectedPlantId)
-    }
+    fun searchAreaSignaturesByPlantIdRepo(selectedPlantId: String) = areaDao.searchAreaSignaturesByPlantId(selectedPlantId)
 
     suspend fun bulkInsertAreasRepo(newAreas: List<AreaEntity>){
         areaDao.bulkInsertAreas(newAreas)

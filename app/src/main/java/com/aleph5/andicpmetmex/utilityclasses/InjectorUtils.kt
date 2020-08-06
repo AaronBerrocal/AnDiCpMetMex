@@ -38,6 +38,12 @@ object InjectorUtils {
         )
     }
 
+    private fun getSystemTypeRepository(context: Context): SystemTypeRepository{
+        return SystemTypeRepository.getInstance(
+            AnDiCpRoomDatabase.getInstance(context.applicationContext, GlobalScope).systemTypeDao()
+        )
+    }
+
     fun provideAdministracionEventosViewModelFactory(
         context: Context
     ): AdministracionEventosViewModelFactory{
@@ -46,7 +52,8 @@ object InjectorUtils {
             getPlantRepository(context),
             getAreaRepository(context),
             getSubareaRepository(context),
-            getEquipmentRepository(context)
+            getEquipmentRepository(context),
+            getSystemTypeRepository(context)
         )
     }
 }
