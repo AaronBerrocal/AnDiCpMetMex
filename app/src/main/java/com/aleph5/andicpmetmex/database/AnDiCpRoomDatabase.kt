@@ -136,12 +136,12 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
                 "Cuchara",
                 "ctrl0001",
                 "Control",
-                2, //2
-                "Falla", //Falla
-                3, //1 //2
-                "Baja", //Alta //Media
-                1, //2 //3 //4
-                "Abierto", //Diagnóstico //Ejecución //Pendiente
+                "fl",
+                "Falla",
+                "b",
+                "Baja",
+                "abtev",
+                "Abierto",
                 "mmoreno",
                 "ext. 5959",
                 "marcos_moreno@penoles.com.mx",
@@ -150,8 +150,8 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
                 null,
                 null,
                 null,
-                1,
-                "Atendido por CDP",
+                null,
+                null,
                 null,
                 null,
                 null,
@@ -174,12 +174,12 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
                 "Horno",
                 "xprt0002",
                 "Experto",
-                1, //2
-                "Solicitud", //Falla
-                3, //1 //2
-                "Baja", //Alta //Media
-                3, //2 //3 //4
-                "Ejecución", //Diagnóstico //Ejecución //Pendiente
+                "slt",
+                "Solicitud",
+                "b",
+                "Baja",
+                "ejecev",
+                "Ejecución",
                 "gmarquez",
                 "ext. 5959",
                 "gabriel_marquez@penoles.com.mx",
@@ -188,8 +188,8 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
                 null,
                 null,
                 null,
-                1,
-                "Atendido por CDP",
+                null,
+                null,
                 null,
                 null,
                 null,
@@ -989,19 +989,332 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
             //endregion inject system type data
 
             //region inject event type data
+            val eventTypes = ArrayList<EventTypeEntity>()
+            eventTypes.add(
+                EventTypeEntity(
+                    0,
+                    "fl",
+                    "falla",
+                    1,
+                    "fl - falla"
+                )
+            )
+            eventTypes.add(
+                EventTypeEntity(
+                    0,
+                    "slt",
+                    "solicitud",
+                    1,
+                    "slt - solicitud"
+                )
+            )
 
+            eventTypeDao.bulkInsertEventTypes(eventTypes)
             //endregion inject event type data
 
             //region inject priority data
+            val priorities = ArrayList<PriorityEntity>()
+            priorities.add(
+                PriorityEntity(
+                    0,
+                    "a",
+                    "alta",
+                    1,
+                    "a - alta"
+                )
+            )
+            priorities.add(
+                PriorityEntity(
+                    0,
+                    "m",
+                    "media",
+                    1,
+                    "m - media"
+                )
+            )
+            priorities.add(
+                PriorityEntity(
+                    0,
+                    "b",
+                    "baja",
+                    1,
+                    "b - baja"
+                )
+            )
 
+            priorityDao.bulkInsertPriorities(priorities)
             //endregion inject priority data
 
             //region inject status data
+            val status = ArrayList<StatusEntity>()
+            status.add(
+                StatusEntity(
+                    0,
+                    "abtev",
+                    "abierto",
+                    null,
+                    1,
+                    "ctrl_eventos",
+                    "abtev - abierto"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "dgntev",
+                    "diagnóstico",
+                    null,
+                    1,
+                    "ctrl_eventos",
+                    "dgntev - diagnóstico"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "ejecev",
+                    "ejecución",
+                    null,
+                    1,
+                    "ctrl_eventos",
+                    "ejecev - ejecución"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "pdteev",
+                    "pendiente",
+                    null,
+                    1,
+                    "ctrl_eventos",
+                    "pdteev - pendiente"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "crdev",
+                    "cerrado",
+                    null,
+                    1,
+                    "ctrl_eventos",
+                    "crdev - cerrado"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "ejecpy",
+                    "ejecución",
+                    null,
+                    1,
+                    "ctrl_proy",
+                    "ejecpy - ejecución"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "rtspy",
+                    "retrasado",
+                    null,
+                    1,
+                    "ctrl_proy",
+                    "rtspy - retrasado"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "crdpy",
+                    "cerrado",
+                    null,
+                    1,
+                    "ctrl_proy",
+                    "crdpy - cerrado"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "cnclpy",
+                    "cancelado",
+                    null,
+                    1,
+                    "ctrl_proy",
+                    "cnclpy - cancelado"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "susppy",
+                    "suspendido",
+                    null,
+                    1,
+                    "ctrl_proy",
+                    "susppy - suspendido"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "vgncv",
+                    "vigente",
+                    null,
+                    1,
+                    "convenios_spte",
+                    "vgncv - vigente"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "vnccv",
+                    "vencido",
+                    null,
+                    1,
+                    "convenios_spte",
+                    "vnccv - vencido"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "ccelcv",
+                    "cancelado",
+                    null,
+                    1,
+                    "convenios_spte",
+                    "ccelcv - cancelado"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "vgnan",
+                    "vigente",
+                    null,
+                    1,
+                    "anexos",
+                    "vgnan - vigente"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "vncan",
+                    "vencido",
+                    null,
+                    1,
+                    "anexos",
+                    "vncan - vencido"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "ccelan",
+                    "cancelado",
+                    null,
+                    1,
+                    "anexos",
+                    "ccelan - cancelado"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "usoea",
+                    "uso",
+                    null,
+                    1,
+                    "equipo_anexo",
+                    "usoea - uso"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "stockea",
+                    "stock",
+                    null,
+                    1,
+                    "equipo_anexo",
+                    "stockea - stock"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "repea",
+                    "reparación",
+                    null,
+                    1,
+                    "equipo_anexo",
+                    "repea - reparación"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "bajaea",
+                    "baja",
+                    null,
+                    1,
+                    "equipo_anexo",
+                    "bajaea - baja"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "dispem",
+                    "disponible",
+                    null,
+                    1,
+                    "equipo_medicion",
+                    "dispem - disponible"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "aptem",
+                    "apartado",
+                    null,
+                    1,
+                    "equipo_medicion",
+                    "aptem - apartado"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "ndispem",
+                    "no disponible",
+                    null,
+                    1,
+                    "equipo_medicion",
+                    "ndispem - no disponible"
+                )
+            )
+            status.add(
+                StatusEntity(
+                    0,
+                    "bajaem",
+                    "baja",
+                    null,
+                    1,
+                    "equipo_medicion",
+                    "bajaem - baja"
+                )
+            )
 
+            statusDao.bulkInsertStatus(status)
             //endregion inject status data
 
-
         }
-
     }
 }

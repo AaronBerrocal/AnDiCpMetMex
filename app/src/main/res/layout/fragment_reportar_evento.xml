@@ -236,14 +236,13 @@
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/card_font_size_normal"/>
 
-                    <EditText
-                        android:id="@+id/etv_report_event_tipo_evento_value"
+                    <Spinner
+                        android:id="@+id/spinner_report_event_tipo_evento_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="@dimen/event_title_font_size_normal"
-                        android:hint="Nombre del Tipo de Evento"
-                        android:gravity="end" />
+                        android:textAlignment="viewEnd" />
 
                 </LinearLayout>
 
@@ -264,14 +263,13 @@
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/card_font_size_normal"/>
 
-                    <EditText
-                        android:id="@+id/etv_report_event_prioridad_value"
+                    <Spinner
+                        android:id="@+id/spinner_report_event_prioridad_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="@dimen/event_title_font_size_normal"
-                        android:hint="Prioridad Asignada"
-                        android:gravity="end" />
+                        android:textAlignment="viewEnd" />
 
                 </LinearLayout>
 
@@ -292,14 +290,13 @@
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/card_font_size_normal"/>
 
-                    <EditText
-                        android:id="@+id/etv_report_event_estatus_value"
+                    <Spinner
+                        android:id="@+id/spinner_report_event_estatus_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="@dimen/event_title_font_size_normal"
-                        android:hint="Estatus Actual"
-                        android:gravity="end" />
+                        android:textAlignment="viewEnd" />
 
                 </LinearLayout>
 

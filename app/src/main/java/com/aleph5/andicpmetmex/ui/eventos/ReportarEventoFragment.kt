@@ -51,10 +51,20 @@ class ReportarEventoFragment : Fragment() {
     private var systemTypeList = ArrayList<SystemTypeEntity>()
     private lateinit var systemTypeCustomAdapter: SystemTypeArrayAdapter
     var itemSystemTypeStr: String = ""
-    private lateinit var tipoEventoEtv: EditText
-    private lateinit var prioridadEtv: EditText
-    private lateinit var estatusEtv: EditText
+    private lateinit var tipoEventoSpr: Spinner
+    private var eventTypeList = ArrayList<EventTypeEntity>()
+    private lateinit var eventTypeCustomAdapter: EventTypeArrayAdapter
+    var itemEventTypeStr: String = ""
+    private lateinit var prioridadSpr: Spinner
+    private var priorityList = ArrayList<PriorityEntity>()
+    private lateinit var priorityCustomAdapter: PriorityArrayAdapter
+    var itemPriorityStr: String = ""
+    private lateinit var estatusSpr: Spinner
+    private var statusList = ArrayList<StatusEntity>()
+    private lateinit var statusCustomAdapter: StatusArrayAdapter
+    var itemStatusStr: String = ""
 
+    //ETVs
     private lateinit var nombreSolicitanteEtv: EditText
     private lateinit var contactoSolicitanteEtv: EditText
     private lateinit var correoSolicitanteEtv: EditText
@@ -68,6 +78,8 @@ class ReportarEventoFragment : Fragment() {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_reportar_evento, container, false)
 
+        //region View Binding
+        //MAIN VIEWS
         val ubicacionTv = root.txt_r_e_ubicacion_header
         val ubicacionLl = root.ll_ubicacion
         val caracteristicasTv = root.txt_r_e_caracteristicas_header
@@ -75,21 +87,28 @@ class ReportarEventoFragment : Fragment() {
         val solicitudTv = root.txt_r_e_solicitud_header
         val solicitudLl = root.ll_solicitud
 
-        val cancelMbtn = root.mbtn_report_event_cancel
-        val saveMbtn = root.mbtn_report_event_save
-
+        //ACTVs
         plantaActv = root.actv_report_event_planta_value
         areaActv = root.actv_report_event_area_value
         subareaActv = root.actv_report_event_subarea_value
         equipoActv = root.actv_report_event_equipo_planta_value
+        //SPINNERs
         tipoSistemaSpr = root.spinner_report_event_tipo_sistema_value
-        tipoEventoEtv = root.etv_report_event_tipo_evento_value
-        prioridadEtv = root.etv_report_event_prioridad_value
-        estatusEtv = root.etv_report_event_estatus_value
+        tipoEventoSpr = root.spinner_report_event_tipo_evento_value
+        prioridadSpr = root.spinner_report_event_prioridad_value
+        estatusSpr = root.spinner_report_event_estatus_value
+        //ETVs
         nombreSolicitanteEtv = root.etv_report_event_nombre_solicitante_value
         contactoSolicitanteEtv = root.etv_report_event_contacto_solicitante_value
         correoSolicitanteEtv = root.etv_report_event_correo_solicitante_value
 
+        //SAVE-CANCEL VIEWS
+        val cancelMbtn = root.mbtn_report_event_cancel
+        val saveMbtn = root.mbtn_report_event_save
+        //endregion View Binding
+
+        //region View Functionality
+        //MAIN VIEWS
         ubicacionTv.setOnClickListener {
             hideKeyboard()
             ubicacionLl.expandCollapse()
@@ -105,22 +124,9 @@ class ReportarEventoFragment : Fragment() {
             solicitudLl.expandCollapse()
         }
 
+        //ACTVs
         plantCustomAdapter = PlantArrayAdapter(requireContext(), plantList)
         plantaActv.setAdapter(plantCustomAdapter)
-//        plantaActv.setOnClickDropDown()
-
-        areaCustomAdapter = AreaArrayAdapter(requireContext(), areaList)
-        areaActv.setAdapter(areaCustomAdapter)
-//        areaActv.setOnClickDropDown()
-
-        subareaCustomAdapter = SubareaArrayAdapter(requireContext(), subareaList)
-        subareaActv.setAdapter(subareaCustomAdapter)
-//        subareaActv.setOnClickDropDown()
-
-        equipmentCustomAdapter = EquipmentArrayAdapter(requireContext(), equipmentList)
-        equipoActv.setAdapter(equipmentCustomAdapter)
-//        subareaActv.setOnClickDropDown()
-
         plantaActv.setOnItemClickListener { adapterView: AdapterView<*>, _: View, i: Int, _: Long ->
             areaActv.setText("")
             subareaActv.setText("")
@@ -138,6 +144,8 @@ class ReportarEventoFragment : Fragment() {
             }
         }
 
+        areaCustomAdapter = AreaArrayAdapter(requireContext(), areaList)
+        areaActv.setAdapter(areaCustomAdapter)
         areaActv.setOnItemClickListener { adapterView: AdapterView<*>, _: View, i: Int, _:Long ->
             subareaActv.setText("")
             equipoActv.setText("")
@@ -154,6 +162,8 @@ class ReportarEventoFragment : Fragment() {
             }
         }
 
+        subareaCustomAdapter = SubareaArrayAdapter(requireContext(), subareaList)
+        subareaActv.setAdapter(subareaCustomAdapter)
         subareaActv.setOnItemClickListener { adapterView: AdapterView<*>, _: View, i: Int, _:Long ->
             equipoActv.setText("")
 
@@ -169,12 +179,14 @@ class ReportarEventoFragment : Fragment() {
             }
         }
 
+        equipmentCustomAdapter = EquipmentArrayAdapter(requireContext(), equipmentList)
+        equipoActv.setAdapter(equipmentCustomAdapter)
+
+        //SPINNERs
         systemTypeCustomAdapter = SystemTypeArrayAdapter(requireContext(), systemTypeList)
         tipoSistemaSpr.adapter = systemTypeCustomAdapter
-
         tipoSistemaSpr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onNothingSelected(parent: AdapterView<*>?) {
-
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -182,6 +194,40 @@ class ReportarEventoFragment : Fragment() {
             }
         }
 
+        eventTypeCustomAdapter = EventTypeArrayAdapter(requireContext(), eventTypeList)
+        tipoEventoSpr.adapter = eventTypeCustomAdapter
+        tipoEventoSpr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                itemEventTypeStr = (parent?.getItemAtPosition(position) as EventTypeEntity).signature
+            }
+        }
+
+        priorityCustomAdapter = PriorityArrayAdapter(requireContext(), priorityList)
+        prioridadSpr.adapter = priorityCustomAdapter
+        prioridadSpr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                itemPriorityStr = (parent?.getItemAtPosition(position) as PriorityEntity).signature
+            }
+        }
+
+        statusCustomAdapter = StatusArrayAdapter(requireContext(), statusList)
+        estatusSpr.adapter = statusCustomAdapter
+        estatusSpr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                itemStatusStr = (parent?.getItemAtPosition(position) as StatusEntity).signature
+            }
+        }
+
+        //SAVE-CANCEL VIEWS
         cancelMbtn.setOnClickListener {
             hideKeyboard()
             findNavController().navigateUp()
@@ -195,6 +241,9 @@ class ReportarEventoFragment : Fragment() {
             val selectedSubareaStr = subareaActv.text.toString().split(" - ")
             val selectedEquipmentStr = equipoActv.text.toString().split(" - ")
             val selectedSystemTypeStr = itemSystemTypeStr.split(" - ")
+            val selectedEventTypeStr = itemEventTypeStr.split(" - ")
+            val selectedPriorityStr = itemPriorityStr.split(" - ")
+            val selectedStatusStr = itemStatusStr.split(" - ")
 
             if (validateEventReportData()) {
                 viewModel.insertEventVm(
@@ -211,12 +260,12 @@ class ReportarEventoFragment : Fragment() {
                         selectedEquipmentStr[1],
                         selectedSystemTypeStr[0],
                         selectedSystemTypeStr[1],
-                        2, //2
-                        tipoEventoEtv.text.toString(), //Falla
-                        3, //1 //2
-                        prioridadEtv.text.toString(), //Alta //Media
-                        1, //2 //3 //4
-                        estatusEtv.text.toString(), //Diagnóstico //Ejecución //Pendiente
+                        selectedEventTypeStr[0],
+                        selectedEventTypeStr[1],
+                        selectedPriorityStr[0],
+                        selectedPriorityStr[1],
+                        selectedStatusStr[0],
+                        selectedStatusStr[1],
                         nombreSolicitanteEtv.text.toString(),
                         contactoSolicitanteEtv.text.toString(),
                         correoSolicitanteEtv.text.toString(),
@@ -225,8 +274,8 @@ class ReportarEventoFragment : Fragment() {
                         null,
                         null,
                         null,
-                        1,
-                        "Atendido por CDP",
+                        null,
+                        null,
                         null,
                         null,
                         null,
@@ -245,8 +294,8 @@ class ReportarEventoFragment : Fragment() {
                 builder.setPositiveButton("Ententido") { _: DialogInterface, _: Int -> }
                 builder.show()
             }
-
         }
+        //endregion View Functionality
 
         return root
     }
@@ -293,6 +342,27 @@ class ReportarEventoFragment : Fragment() {
                 }
             })
 
+            viewModel.allEventTypes.observe(viewLifecycleOwner, Observer { eventTypes ->
+                eventTypes?.let {
+                    this.eventTypeList = it as ArrayList<EventTypeEntity>
+                    eventTypeCustomAdapter.setEventTypes(it)
+                }
+            })
+
+            viewModel.allPriorities.observe(viewLifecycleOwner, Observer { priorities ->
+                priorities?.let {
+                    this.priorityList = it as ArrayList<PriorityEntity>
+                    priorityCustomAdapter.setPriorities(it)
+                }
+            })
+
+            viewModel.searchStatusByModuleIdVm(EVENT_MODULE_ID).observe(viewLifecycleOwner, Observer { status ->
+                status?.let {
+                    this.statusList = it as ArrayList<StatusEntity>
+                    statusCustomAdapter.setStatus(it)
+                }
+            })
+
         }
 
         override fun onDestroyView() {
@@ -307,9 +377,9 @@ class ReportarEventoFragment : Fragment() {
                     subareaActv.text.trim().isEmpty() ||
                     equipoActv.text.trim().isEmpty() ||
                     itemSystemTypeStr.trim().isEmpty() ||
-                    tipoEventoEtv.text.trim().isEmpty() ||
-                    prioridadEtv.text.trim().isEmpty() ||
-                    estatusEtv.text.trim().isEmpty() ||
+                    itemEventTypeStr.trim().isEmpty() ||
+                    itemPriorityStr.trim().isEmpty() ||
+                    itemStatusStr.trim().isEmpty() ||
                     nombreSolicitanteEtv.text.trim().isEmpty() ||
                     contactoSolicitanteEtv.text.trim().isEmpty() ||
                     correoSolicitanteEtv.text.trim().isEmpty())

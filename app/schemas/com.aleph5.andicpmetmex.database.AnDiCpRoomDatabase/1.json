@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "36945a57f662b08f02d169d545ac0b5e",
+    "identityHash": "22ecbced35a04924f524251977414b92",
     "entities": [
       {
         "tableName": "eventos",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id_evento` TEXT NOT NULL, `id_planta` TEXT NOT NULL, `planta` TEXT NOT NULL, `id_area` TEXT NOT NULL, `area` TEXT NOT NULL, `id_subarea` TEXT NOT NULL, `subarea` TEXT NOT NULL, `id_equipo_planta` TEXT NOT NULL, `equipo_planta` TEXT NOT NULL, `id_tipo_sistema` TEXT NOT NULL, `tipo_sistema` TEXT NOT NULL, `id_tipo_evento` INTEGER NOT NULL, `tipo_evento` TEXT NOT NULL, `id_prioridad` INTEGER NOT NULL, `prioridad` TEXT NOT NULL, `id_estatus` INTEGER NOT NULL, `estatus` TEXT NOT NULL, `nombre_solicitante` TEXT NOT NULL, `contacto_solicitante` TEXT NOT NULL, `correo_solicitante` TEXT NOT NULL, `fecha_reporte` INTEGER NOT NULL, `id_tipo_falla` INTEGER, `tipo_falla` TEXT, `id_subtipo_falla` INTEGER, `subtipo_falla` TEXT, `id_tipo_atencion` INTEGER, `tipo_atencion` TEXT, `diagnostico` TEXT, `fecha_solucion` INTEGER, `comentarios` TEXT, `nombre_usuario_alta` TEXT, `guardia_en_turno` TEXT, `nombre_ejecutor` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id_evento` TEXT NOT NULL, `id_planta` TEXT NOT NULL, `planta` TEXT NOT NULL, `id_area` TEXT NOT NULL, `area` TEXT NOT NULL, `id_subarea` TEXT NOT NULL, `subarea` TEXT NOT NULL, `id_equipo_planta` TEXT NOT NULL, `equipo_planta` TEXT NOT NULL, `id_tipo_sistema` TEXT NOT NULL, `tipo_sistema` TEXT NOT NULL, `id_tipo_evento` TEXT NOT NULL, `tipo_evento` TEXT NOT NULL, `id_prioridad` TEXT NOT NULL, `prioridad` TEXT NOT NULL, `id_estatus` TEXT NOT NULL, `estatus` TEXT NOT NULL, `nombre_solicitante` TEXT NOT NULL, `contacto_solicitante` TEXT NOT NULL, `correo_solicitante` TEXT NOT NULL, `fecha_reporte` INTEGER NOT NULL, `id_tipo_falla` TEXT, `tipo_falla` TEXT, `id_subtipo_falla` TEXT, `subtipo_falla` TEXT, `id_tipo_atencion` TEXT, `tipo_atencion` TEXT, `diagnostico` TEXT, `fecha_solucion` INTEGER, `comentarios` TEXT, `nombre_usuario_alta` TEXT, `guardia_en_turno` TEXT, `nombre_ejecutor` TEXT)",
         "fields": [
           {
             "fieldPath": "uid",
@@ -83,7 +83,7 @@
           {
             "fieldPath": "idTipoEvento",
             "columnName": "id_tipo_evento",
-            "affinity": "INTEGER",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -95,7 +95,7 @@
           {
             "fieldPath": "idPrioridad",
             "columnName": "id_prioridad",
-            "affinity": "INTEGER",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -107,7 +107,7 @@
           {
             "fieldPath": "idEstatus",
             "columnName": "id_estatus",
-            "affinity": "INTEGER",
+            "affinity": "TEXT",
             "notNull": true
           },
           {
@@ -143,7 +143,7 @@
           {
             "fieldPath": "idTipoFalla",
             "columnName": "id_tipo_falla",
-            "affinity": "INTEGER",
+            "affinity": "TEXT",
             "notNull": false
           },
           {
@@ -155,7 +155,7 @@
           {
             "fieldPath": "idSubtipoFalla",
             "columnName": "id_subtipo_falla",
-            "affinity": "INTEGER",
+            "affinity": "TEXT",
             "notNull": false
           },
           {
@@ -167,7 +167,7 @@
           {
             "fieldPath": "idTipoAtencion",
             "columnName": "id_tipo_atencion",
-            "affinity": "INTEGER",
+            "affinity": "TEXT",
             "notNull": false
           },
           {
@@ -815,7 +815,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '36945a57f662b08f02d169d545ac0b5e')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '22ecbced35a04924f524251977414b92')"
     ]
   }
 }

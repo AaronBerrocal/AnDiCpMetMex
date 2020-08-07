@@ -6,13 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import com.aleph5.andicpmetmex.entities.SubareaEntity
+import com.aleph5.andicpmetmex.entities.PriorityEntity
 import com.aleph5.andicpmetmex.entities.SystemTypeEntity
 
-class SystemTypeArrayAdapter(
+class PriorityArrayAdapter(
     private val mContext: Context,
-    private var objects: ArrayList<SystemTypeEntity>
-): ArrayAdapter<SystemTypeEntity?>(mContext, 0, objects as List<SystemTypeEntity>) {
+    private var objects: ArrayList<PriorityEntity>
+): ArrayAdapter<PriorityEntity?>(mContext, 0, objects as List<PriorityEntity>) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         return this.createView(position, convertView, parent)
@@ -24,23 +24,23 @@ class SystemTypeArrayAdapter(
 
     private fun createView(position: Int, convertView: View?, parent: ViewGroup): View{
         val view = convertView ?: LayoutInflater.from(mContext).inflate(
-                    android.R.layout.simple_spinner_item,
-                    parent,
-                    false
-                )
+            android.R.layout.simple_spinner_item,
+            parent,
+            false
+        )
 
-        val systemType: SystemTypeEntity? = getItem(position)
-        if(systemType != null){
+        val priority: PriorityEntity? = getItem(position)
+        if(priority != null){
             val textViewSignature = view.findViewById<TextView>(android.R.id.text1)
-            textViewSignature?.text = systemType.signature
+            textViewSignature?.text = priority.signature
         }
 
         return view
     }
 
-    fun setSystemTypes(systemTypeList: ArrayList<SystemTypeEntity>){
+    fun setPriorities(priorityList: ArrayList<PriorityEntity>){
         clear()
-        addAll(systemTypeList)
+        addAll(priorityList)
         notifyDataSetChanged()
     }
 }

@@ -6,13 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
-import com.aleph5.andicpmetmex.entities.SubareaEntity
+import com.aleph5.andicpmetmex.entities.StatusEntity
 import com.aleph5.andicpmetmex.entities.SystemTypeEntity
+import java.util.*
+import kotlin.collections.ArrayList
 
-class SystemTypeArrayAdapter(
+class StatusArrayAdapter(
     private val mContext: Context,
-    private var objects: ArrayList<SystemTypeEntity>
-): ArrayAdapter<SystemTypeEntity?>(mContext, 0, objects as List<SystemTypeEntity>) {
+    private var objects: ArrayList<StatusEntity>
+): ArrayAdapter<StatusEntity?>(mContext, 0, objects as List<StatusEntity>) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         return this.createView(position, convertView, parent)
@@ -22,25 +24,25 @@ class SystemTypeArrayAdapter(
         return this.createView(position, convertView, parent)
     }
 
-    private fun createView(position: Int, convertView: View?, parent: ViewGroup): View{
+    private fun createView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view = convertView ?: LayoutInflater.from(mContext).inflate(
-                    android.R.layout.simple_spinner_item,
-                    parent,
-                    false
-                )
+            android.R.layout.simple_spinner_item,
+            parent,
+            false
+        )
 
-        val systemType: SystemTypeEntity? = getItem(position)
-        if(systemType != null){
+        val status: StatusEntity? = getItem(position)
+        if(status != null){
             val textViewSignature = view.findViewById<TextView>(android.R.id.text1)
-            textViewSignature?.text = systemType.signature
+            textViewSignature?.text = status.signature
         }
 
         return view
     }
 
-    fun setSystemTypes(systemTypeList: ArrayList<SystemTypeEntity>){
+    fun setStatus(statusList: ArrayList<StatusEntity>){
         clear()
-        addAll(systemTypeList)
+        addAll(statusList)
         notifyDataSetChanged()
     }
 }
