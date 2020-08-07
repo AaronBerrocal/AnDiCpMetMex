@@ -6,7 +6,7 @@ import com.aleph5.andicpmetmex.entities.SystemTypeEntity
 
 class SystemTypeRepository private constructor(private val systemTypeDao: SystemTypeDao){
 
-    fun searchSystemTypesByModuleIdRepo(selectedModuleId: String): LiveData<List<String>>{
+    fun searchSystemTypesByModuleIdRepo(selectedModuleId: String): LiveData<List<SystemTypeEntity>>{
         return systemTypeDao.searchSystemTypesByModuleId(selectedModuleId)
     }
 

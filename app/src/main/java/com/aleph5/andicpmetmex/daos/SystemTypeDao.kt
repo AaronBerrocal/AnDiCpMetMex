@@ -7,8 +7,8 @@ import com.aleph5.andicpmetmex.entities.SystemTypeEntity
 @Dao
 interface SystemTypeDao {
 
-    @Query("SELECT signature FROM a06_tipo_sistema WHERE id_modulo = :selectedModuleId AND activo = 1")
-    fun searchSystemTypesByModuleId(selectedModuleId: String): LiveData<List<String>>
+    @Query("SELECT * FROM a06_tipo_sistema WHERE id_modulo = :selectedModuleId AND activo = 1")
+    fun searchSystemTypesByModuleId(selectedModuleId: String): LiveData<List<SystemTypeEntity>>
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -7,11 +7,8 @@ import com.aleph5.andicpmetmex.entities.EquipmentEntity
 @Dao
 interface EquipmentDao {
 
-    @Query("SELECT signature FROM a05_equipo_planta WHERE activo = 1")
-    fun loadAllEquipmentSignatures(): LiveData<List<String>>
-
-    @Query("SELECT signature FROM a05_equipo_planta WHERE id_subarea = :selectedSubareaId AND activo = 1")
-    fun searchEquipmentSignaturesBySubareaId(selectedSubareaId: String): LiveData<List<String>>
+    @Query("SELECT * FROM a05_equipo_planta WHERE activo = 1")
+    fun loadAllEquipments(): LiveData<List<EquipmentEntity>>
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)

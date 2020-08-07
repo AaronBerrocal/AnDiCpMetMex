@@ -6,11 +6,7 @@ import com.aleph5.andicpmetmex.entities.SubareaEntity
 
 class SubareaRepository private constructor(private val subareaDao: SubareaDao) {
 
-    val subareaSignatures: LiveData<List<String>> = subareaDao.loadAllSubareaSignatures()
-
-    fun searchSubareaSignaturesByAreaIdRepo(selectedAreaId: String): LiveData<List<String>>{
-        return  subareaDao.searchSubareaSignaturesByAreaId(selectedAreaId)
-    }
+    val subareas: LiveData<List<SubareaEntity>> = subareaDao.loadAllSubareas()
 
     suspend fun bulkInsertSubareasRepo(newSubareas: List<SubareaEntity>){
         subareaDao.bulkInsertSubareas(newSubareas)

@@ -14,11 +14,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.aleph5.andicpmetmex.R
-import com.aleph5.andicpmetmex.adapters.AreaArrayAdapter
-import com.aleph5.andicpmetmex.adapters.PlantArrayAdapter
-import com.aleph5.andicpmetmex.entities.AreaEntity
-import com.aleph5.andicpmetmex.entities.EventEntity
-import com.aleph5.andicpmetmex.entities.PlantEntity
+import com.aleph5.andicpmetmex.adapters.*
+import com.aleph5.andicpmetmex.entities.*
 import com.aleph5.andicpmetmex.utilityclasses.*
 import com.aleph5.andicpmetmex.viewmodels.AdministracionEventosViewModel
 import kotlinx.android.synthetic.main.fragment_reportar_evento.view.*
@@ -35,14 +32,25 @@ class ReportarEventoFragment : Fragment() {
         InjectorUtils.provideAdministracionEventosViewModelFactory(requireContext())
     }
 
+    //ACTVs
     private lateinit var plantaActv: AutoCompleteTextView
     private var plantList = ArrayList<PlantEntity>()
+    private lateinit var plantCustomAdapter: PlantArrayAdapter
     private lateinit var areaActv: AutoCompleteTextView
     private var areaList = ArrayList<AreaEntity>()
-    private lateinit var subareaEtv: EditText
-    private lateinit var equipoEtv: EditText
-    private lateinit var tipoSistemaEtv: EditText
+    private lateinit var areaCustomAdapter: AreaArrayAdapter
+    private lateinit var subareaActv: AutoCompleteTextView
+    private var subareaList = ArrayList<SubareaEntity>()
+    private lateinit var subareaCustomAdapter: SubareaArrayAdapter
+    private lateinit var equipoActv: AutoCompleteTextView
+    private var equipmentList = ArrayList<EquipmentEntity>()
+    private lateinit var equipmentCustomAdapter: EquipmentArrayAdapter
 
+    //SPINNERs
+    private lateinit var tipoSistemaSpr: Spinner
+    private var systemTypeList = ArrayList<SystemTypeEntity>()
+    private lateinit var systemTypeCustomAdapter: SystemTypeArrayAdapter
+    var itemSystemTypeStr: String = ""
     private lateinit var tipoEventoEtv: EditText
     private lateinit var prioridadEtv: EditText
     private lateinit var estatusEtv: EditText
@@ -52,9 +60,6 @@ class ReportarEventoFragment : Fragment() {
     private lateinit var correoSolicitanteEtv: EditText
 
     private var currentEventsCount: Int = 0
-
-    private lateinit var plantCustomAdapter: PlantArrayAdapter
-    private lateinit var areaCustomAdapter: AreaArrayAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -75,9 +80,9 @@ class ReportarEventoFragment : Fragment() {
 
         plantaActv = root.actv_report_event_planta_value
         areaActv = root.actv_report_event_area_value
-        subareaEtv = root.etv_report_event_subarea_value
-        equipoEtv = root.etv_report_event_equipo_planta_value
-        tipoSistemaEtv = root.etv_report_event_tipo_sistema_value
+        subareaActv = root.actv_report_event_subarea_value
+        equipoActv = root.actv_report_event_equipo_planta_value
+        tipoSistemaSpr = root.spinner_report_event_tipo_sistema_value
         tipoEventoEtv = root.etv_report_event_tipo_evento_value
         prioridadEtv = root.etv_report_event_prioridad_value
         estatusEtv = root.etv_report_event_estatus_value
@@ -108,21 +113,72 @@ class ReportarEventoFragment : Fragment() {
         areaActv.setAdapter(areaCustomAdapter)
 //        areaActv.setOnClickDropDown()
 
+        subareaCustomAdapter = SubareaArrayAdapter(requireContext(), subareaList)
+        subareaActv.setAdapter(subareaCustomAdapter)
+//        subareaActv.setOnClickDropDown()
+
+        equipmentCustomAdapter = EquipmentArrayAdapter(requireContext(), equipmentList)
+        equipoActv.setAdapter(equipmentCustomAdapter)
+//        subareaActv.setOnClickDropDown()
+
         plantaActv.setOnItemClickListener { adapterView: AdapterView<*>, _: View, i: Int, _: Long ->
             areaActv.setText("")
+            subareaActv.setText("")
+            equipoActv.setText("")
 
             val selectedPlant = adapterView.getItemAtPosition(i) as PlantEntity
-
             if (areaList.size > 0) {
                 val filteredAreas = ArrayList<AreaEntity>()
-
                 for (a: AreaEntity in areaList) {
                     if (a.idPlanta == selectedPlant.idPlanta) {
                         filteredAreas.add(a)
                     }
                 }
-
                 areaCustomAdapter.setAreas(filteredAreas)
+            }
+        }
+
+        areaActv.setOnItemClickListener { adapterView: AdapterView<*>, _: View, i: Int, _:Long ->
+            subareaActv.setText("")
+            equipoActv.setText("")
+
+            val selectedArea = adapterView.getItemAtPosition(i) as AreaEntity
+            if(subareaList.size > 0){
+                val filteredSubareas = ArrayList<SubareaEntity>()
+                for(s: SubareaEntity in subareaList){
+                    if(s.idArea == selectedArea.idArea){
+                        filteredSubareas.add(s)
+                    }
+                }
+                subareaCustomAdapter.setSubareas(filteredSubareas)
+            }
+        }
+
+        subareaActv.setOnItemClickListener { adapterView: AdapterView<*>, _: View, i: Int, _:Long ->
+            equipoActv.setText("")
+
+            val selectedSubarea = adapterView.getItemAtPosition(i) as SubareaEntity
+            if(equipmentList.size > 0){
+                val filteredEquipments = ArrayList<EquipmentEntity>()
+                for(eqp: EquipmentEntity in equipmentList){
+                    if(eqp.idSubrea == selectedSubarea.idSubarea){
+                        filteredEquipments.add(eqp)
+                    }
+                }
+                equipmentCustomAdapter.setEquipments(filteredEquipments)
+            }
+        }
+
+        systemTypeCustomAdapter = SystemTypeArrayAdapter(requireContext(), systemTypeList)
+        tipoSistemaSpr.adapter = systemTypeCustomAdapter
+
+        tipoSistemaSpr.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                itemSystemTypeStr = (parent?.getItemAtPosition(position) as SystemTypeEntity).signature
             }
         }
 
@@ -136,6 +192,9 @@ class ReportarEventoFragment : Fragment() {
 
             val selectedPlantStr = plantaActv.text.toString().split(" - ")
             val selectedAreaStr = areaActv.text.toString().split(" - ")
+            val selectedSubareaStr = subareaActv.text.toString().split(" - ")
+            val selectedEquipmentStr = equipoActv.text.toString().split(" - ")
+            val selectedSystemTypeStr = itemSystemTypeStr.split(" - ")
 
             if (validateEventReportData()) {
                 viewModel.insertEventVm(
@@ -146,12 +205,12 @@ class ReportarEventoFragment : Fragment() {
                         selectedPlantStr[1],
                         selectedAreaStr[0],
                         selectedAreaStr[1],
-                        "sbra${currentEventsCount + 1}",
-                        subareaEtv.text.toString(),
-                        "eqpm${currentEventsCount + 1}",
-                        equipoEtv.text.toString(),
-                        "ctrl${currentEventsCount + 1}",
-                        tipoSistemaEtv.text.toString(),
+                        selectedSubareaStr[0],
+                        selectedSubareaStr[1],
+                        selectedEquipmentStr[0],
+                        selectedEquipmentStr[1],
+                        selectedSystemTypeStr[0],
+                        selectedSystemTypeStr[1],
                         2, //2
                         tipoEventoEtv.text.toString(), //Falla
                         3, //1 //2
@@ -200,7 +259,6 @@ class ReportarEventoFragment : Fragment() {
             })
 
             viewModel.allPlants.observe(viewLifecycleOwner, Observer { plants ->
-                Log.d(TAG, "observing Plants: " + plants)
                 plants?.let {
                     this.plantList = it as ArrayList<PlantEntity>
                     plantCustomAdapter.setPlants(it)
@@ -211,6 +269,27 @@ class ReportarEventoFragment : Fragment() {
                 areas?.let {
                     this.areaList = it as ArrayList<AreaEntity>
                     areaCustomAdapter.setAreas(it)
+                }
+            })
+
+            viewModel.allSubareas.observe(viewLifecycleOwner, Observer { subareas ->
+                subareas?.let {
+                    this.subareaList = it as ArrayList<SubareaEntity>
+                    subareaCustomAdapter.setSubareas(it)
+                }
+            })
+
+            viewModel.allEquipments.observe(viewLifecycleOwner, Observer { equipments ->
+                equipments?.let {
+                    this.equipmentList = it as ArrayList<EquipmentEntity>
+                    equipmentCustomAdapter.setEquipments(it)
+                }
+            })
+
+            viewModel.searchSystemTypesByModuleIdVm(EVENT_MODULE_ID).observe(viewLifecycleOwner, Observer { systemTypes ->
+                systemTypes?.let {
+                    this.systemTypeList = it as ArrayList<SystemTypeEntity>
+                    systemTypeCustomAdapter.setSystemTypes(it)
                 }
             })
 
@@ -225,9 +304,9 @@ class ReportarEventoFragment : Fragment() {
 
             return !(plantaActv.text.trim().isEmpty() ||
                     areaActv.text.trim().isEmpty() ||
-                    subareaEtv.text.trim().isEmpty() ||
-                    equipoEtv.text.trim().isEmpty() ||
-                    tipoSistemaEtv.text.trim().isEmpty() ||
+                    subareaActv.text.trim().isEmpty() ||
+                    equipoActv.text.trim().isEmpty() ||
+                    itemSystemTypeStr.trim().isEmpty() ||
                     tipoEventoEtv.text.trim().isEmpty() ||
                     prioridadEtv.text.trim().isEmpty() ||
                     estatusEtv.text.trim().isEmpty() ||
@@ -236,6 +315,5 @@ class ReportarEventoFragment : Fragment() {
                     correoSolicitanteEtv.text.trim().isEmpty())
 
         }
-
 
     }

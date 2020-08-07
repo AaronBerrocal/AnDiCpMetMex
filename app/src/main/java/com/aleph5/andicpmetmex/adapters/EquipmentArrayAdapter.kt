@@ -7,21 +7,21 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Filter
 import android.widget.TextView
-import com.aleph5.andicpmetmex.entities.AreaEntity
+import com.aleph5.andicpmetmex.entities.EquipmentEntity
 import java.util.*
 import kotlin.collections.ArrayList
 
-class AreaArrayAdapter(
+class EquipmentArrayAdapter(
     private val mContext: Context,
-    private val objects: ArrayList<AreaEntity>
-) : ArrayAdapter<AreaEntity?>(mContext, 0, objects as List<AreaEntity?>) {
+    private val objects: ArrayList<EquipmentEntity>
+): ArrayAdapter<EquipmentEntity?>(mContext, 0, objects as List<EquipmentEntity?>) {
 
-    private var areaListFull = ArrayList<AreaEntity>(objects) //OR objects.clone() as ArrayList<AreaEntity>
-    private var suggestions = ArrayList<AreaEntity>()
+    private var equipmentListFull = ArrayList<EquipmentEntity>(objects)
+    private var suggestions = ArrayList<EquipmentEntity>()
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 //        var v: View? = convertView
-//        if (v == null) {
+//        if(v == null){
 //            v = LayoutInflater.from(mContext).inflate(
 //                android.R.layout.simple_list_item_1,
 //                parent,
@@ -34,28 +34,28 @@ class AreaArrayAdapter(
             false
         )
 
-        val area: AreaEntity? = objects[position]
-        if(area != null){
-            val textViewSignature = v.findViewById(android.R.id.text1) as TextView?
-            textViewSignature?.text = area.signature
+        val equipment: EquipmentEntity? = objects[position]
+        if(equipment != null){
+            val textViewSignature = v.findViewById<TextView>(android.R.id.text1)
+            textViewSignature?.text = equipment.signature
         }
 
         return v
     }
 
     override fun getFilter(): Filter {
-        return areaFilter
+        return equipmentFilter
     }
 
-    private var areaFilter: Filter = object : Filter() {
+    private var equipmentFilter: Filter = object : Filter(){
 
         override fun performFiltering(constraint: CharSequence?): FilterResults {
             return if(constraint != null){
                 suggestions.clear()
                 val filterPattern = constraint.toString().toLowerCase(Locale.getDefault()).trim()
-                for(area in areaListFull){
-                    if(area.signature.toLowerCase(Locale.getDefault()).contains(filterPattern)){
-                        suggestions.add(area)
+                for(equipment in equipmentListFull){
+                    if(equipment.signature.toLowerCase(Locale.getDefault()).contains(filterPattern)){
+                        suggestions.add(equipment)
                     }
                 }
                 val filterResults = FilterResults()
@@ -68,20 +68,20 @@ class AreaArrayAdapter(
         }
 
         override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-            if (results != null && results.count > 0) {
+            if(results != null && results.count > 0){
                 clear()
-                addAll((results.values) as ArrayList<AreaEntity>)
+                addAll((results.values) as ArrayList<EquipmentEntity>)
                 notifyDataSetChanged()
             }
         }
 
         override fun convertResultToString(resultValue: Any?): CharSequence {
-            return (resultValue as AreaEntity).signature
+            return (resultValue as EquipmentEntity).signature
         }
     }
 
-    fun setAreas(areaList: ArrayList<AreaEntity>){
-        this.areaListFull = areaList
+    fun setEquipments(equipmentList: ArrayList<EquipmentEntity>){
+        this.equipmentListFull = equipmentList
         notifyDataSetChanged()
     }
 }

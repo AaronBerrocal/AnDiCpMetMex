@@ -20,22 +20,27 @@ class PlantArrayAdapter(
     private var suggestions = ArrayList<PlantEntity>()
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
-        var v: View? = convertView
-        if (v == null) {
-            v = LayoutInflater.from(mContext).inflate(
-                android.R.layout.simple_list_item_1,
-                parent,
-                false
-            )
-        }
+//        var v: View? = convertView
+//        if (v == null) {
+//            v = LayoutInflater.from(mContext).inflate(
+//                android.R.layout.simple_list_item_1,
+//                parent,
+//                false
+//            )
+//        }
+        val v: View = convertView ?: LayoutInflater.from(mContext).inflate(
+            android.R.layout.simple_list_item_1,
+            parent,
+            false
+        )
 
         val plant: PlantEntity? = objects[position]
         if(plant != null){
-            val textViewSignature = v?.findViewById(android.R.id.text1) as TextView?
+            val textViewSignature = v.findViewById(android.R.id.text1) as TextView?
             textViewSignature?.text = plant.signature
         }
 
-        return v!!
+        return v
     }
 
     override fun getFilter(): Filter {

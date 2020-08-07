@@ -18,7 +18,10 @@ import kotlin.collections.ArrayList
         AreaEntity::class,
         SubareaEntity::class,
         EquipmentEntity::class,
-        SystemTypeEntity::class
+        SystemTypeEntity::class,
+        EventTypeEntity::class,
+        PriorityEntity::class,
+        StatusEntity::class
     ],
     version = 1
 //    ,
@@ -33,6 +36,9 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
     abstract fun subareaDao(): SubareaDao
     abstract fun equipmentDao(): EquipmentDao
     abstract fun systemTypeDao(): SystemTypeDao
+    abstract fun eventTypeDao(): EventTypeDao
+    abstract fun priorityDao(): PriorityDao
+    abstract fun statusDao(): StatusDao
 
 //    val MIGRATION_1_2 = object : Migration(1, 2) {
 //        override fun migrate(database: SupportSQLiteDatabase) {
@@ -79,7 +85,10 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
                         database.areaDao(),
                         database.subareaDao(),
                         database.equipmentDao(),
-                        database.systemTypeDao()
+                        database.systemTypeDao(),
+                        database.eventTypeDao(),
+                        database.priorityDao(),
+                        database.statusDao()
                     )
                 }
             }
@@ -96,7 +105,10 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
             areaDao: AreaDao,
             subareaDao: SubareaDao,
             equipmentDao: EquipmentDao,
-            systemTypeDao: SystemTypeDao
+            systemTypeDao: SystemTypeDao,
+            eventTypeDao: EventTypeDao,
+            priorityDao: PriorityDao,
+            statusDao: StatusDao
         ) {
 
             eventDao.deleteAllEvents()
@@ -105,6 +117,9 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
             subareaDao.deleteAllSubareas()
             equipmentDao.deleteAllEquipment()
             systemTypeDao.deleteAllSystemTypes()
+            eventTypeDao.deleteAllEventTypes()
+            priorityDao.deleteAllPriorities()
+            statusDao.deleteAllStatus()
 
             //region inject event data
 
@@ -400,6 +415,590 @@ abstract class AnDiCpRoomDatabase : RoomDatabase() {
 
             areaDao.bulkInsertAreas(areas)
             //endregion inject area data
+
+            //region inject subarea data
+            val subareas = ArrayList<SubareaEntity>()
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "elct",
+                    "ELECTROLISIS",
+                    "jlam;gmarquez",
+                    null,
+                    1,
+                    "ref",
+                    "aptd",
+                    "elct - ELECTROLISIS"
+                )
+            )
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "hdim",
+                    "HORNOS DE INDUCCION DE MOLDEO",
+                    "jlam;gmarquez",
+                    null,
+                    1,
+                    "ref",
+                    "aptd",
+                    "hdim - HORNOS DE INDUCCION DE MOLDEO"
+                )
+            )
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "csref2",
+                    "CASA DE SACOS 2",
+                    "jlam",
+                    null,
+                    1,
+                    "ref",
+                    "csref",
+                    "csref2 - CASA DE SACOS 2"
+                )
+            )
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "csref3",
+                    "CASA DE SACOS 3",
+                    "jlam",
+                    null,
+                    1,
+                    "ref",
+                    "csref",
+                    "csref3 - CASA DE SACOS 3"
+                )
+            )
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "pda4",
+                    "PAILA DE ALEACIONES 4",
+                    "jmunoz",
+                    null,
+                    1,
+                    "alz",
+                    "zamak",
+                    "pda4 - PAILA DE ALEACIONES 4"
+                )
+            )
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "rdm",
+                    "RUEDOS DE MOLDEO",
+                    "jmunoz",
+                    null,
+                    1,
+                    "alz",
+                    "zamak",
+                    "rdm - RUEDOS DE MOLDEO"
+                )
+            )
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "csalz1",
+                    "CASA DE SACOS 1",
+                    "jmunoz",
+                    null,
+                    1,
+                    "alz",
+                    "csalz",
+                    "csalz1 - CASA DE SACOS 1"
+                )
+            )
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "csalz2",
+                    "CASA DE SACOS 2",
+                    "jmunoz",
+                    null,
+                    1,
+                    "alz",
+                    "csalz",
+                    "csalz2 - CASA DE SACOS 2"
+                )
+            )
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "mdccg",
+                    "Manejo de Concentrados",
+                    "hromero",
+                    null,
+                    1,
+                    "zinc",
+                    "tstz",
+                    "mdccg - Manejo de Concentrados"
+                )
+            )
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "fps",
+                    "FPS",
+                    "hromero",
+                    null,
+                    1,
+                    "zinc",
+                    "tstz",
+                    "fps - FPS"
+                )
+            )
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "esf1",
+                    "Esfera 1",
+                    "jlam",
+                    null,
+                    1,
+                    "ftr",
+                    "alm",
+                    "esf1 - Esfera 1"
+                )
+            )
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "esf2",
+                    "Esfera 2",
+                    "jlam",
+                    null,
+                    1,
+                    "ftr",
+                    "alm",
+                    "esf2 - Esfera 2"
+                )
+            )
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "lab1",
+                    "Laboratorio 1",
+                    "jlam",
+                    null,
+                    1,
+                    "aa",
+                    "lc",
+                    "lab1 - Laboratorio 1"
+                )
+            )
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "lab2",
+                    "Laboratorio 2",
+                    "jlam",
+                    null,
+                    1,
+                    "aa",
+                    "lc",
+                    "lab2 - Laboratorio 2"
+                )
+            )
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "ci",
+                    "CARRO INCLINADO",
+                    "apalos;ehernandez",
+                    null,
+                    1,
+                    "fnc",
+                    "hns",
+                    "ci - CARRO INCLINADO"
+                )
+            )
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "cgd",
+                    "CARGADERO",
+                    "apalos;ehernandez",
+                    null,
+                    1,
+                    "fnc",
+                    "hns",
+                    "cgd - CARGADERO"
+                )
+            )
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "p13",
+                    "PAILA 13.5",
+                    "hromero",
+                    null,
+                    1,
+                    "brm",
+                    "hrt",
+                    "p13 - PAILA 13.5"
+                )
+            )
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "p280",
+                    "PAILA 280 TONS",
+                    "hromero",
+                    null,
+                    1,
+                    "brm",
+                    "hrt",
+                    "p280 - PAILA 280 TONS"
+                )
+            )
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "cm",
+                    "CARCAMO MUNICIPAL",
+                    "hromero",
+                    null,
+                    1,
+                    "tag",
+                    "p2",
+                    "cm - CARCAMO MUNICIPAL"
+                )
+            )
+            subareas.add(
+                SubareaEntity(
+                    0,
+                    "cdb",
+                    "CARCAMO DEL BOSQUE",
+                    "hromero",
+                    null,
+                    1,
+                    "tag",
+                    "p2",
+                    "cdb - CARCAMO DEL BOSQUE"
+                )
+            )
+
+            subareaDao.bulkInsertSubareas(subareas)
+            //endregion inject subarea data
+
+            //region inject equipment data
+            val equipments = ArrayList<EquipmentEntity>()
+
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "chr",
+                    "Cuchara",
+                    null,
+                    1,
+                    "ref",
+                    "aptd",
+                    "elct",
+                    "chr - Cuchara"
+                )
+            )
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "chm",
+                    "Chimenea",
+                    null,
+                    1,
+                    "ref",
+                    "aptd",
+                    "hdim",
+                    "chm - Chimenea"
+                )
+            )
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "ht",
+                    "Horno Retentor",
+                    null,
+                    1,
+                    "ref",
+                    "csref",
+                    "csref2",
+                    "ht - Horno Retentor"
+                )
+            )
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "bda",
+                    "Bombas de Alim. / Recirc. L3",
+                    null,
+                    1,
+                    "ref",
+                    "csref",
+                    "csref3",
+                    "bda - Bombas de Alim. / Recirc. L3"
+                )
+            )
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "hr",
+                    "Horno Retentor",
+                    null,
+                    1,
+                    "alz",
+                    "zamak",
+                    "pda4",
+                    "hr - Horno Retentor"
+                )
+            )
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "cmyr",
+                    "Caldera Myrggo",
+                    null,
+                    1,
+                    "alz",
+                    "zamak",
+                    "rdm",
+                    "cmyr - Caldera Myrggo"
+                )
+            )
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "chra",
+                    "Cuchara A",
+                    null,
+                    1,
+                    "alz",
+                    "csalz",
+                    "csalz1",
+                    "chra - Cuchara A"
+                )
+            )
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "chma",
+                    "Chimenea A",
+                    null,
+                    1,
+                    "alz",
+                    "csalz",
+                    "csalz2",
+                    "chma - Chimenea A"
+                )
+            )
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "hta",
+                    "Horno Retentor A",
+                    null,
+                    1,
+                    "zinc",
+                    "tstz",
+                    "mdccg",
+                    "hta - Horno Retentor A"
+                )
+            )
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "bdaa",
+                    "Bombas de Alim. / Recirc. L3 A",
+                    null,
+                    1,
+                    "zinc",
+                    "tstz",
+                    "fps",
+                    "bdaa - Bombas de Alim. / Recirc. L3 A"
+                )
+            )
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "hra",
+                    "Horno Retentor A",
+                    null,
+                    1,
+                    "ftr",
+                    "alm",
+                    "esf1",
+                    "hra - Horno Retentor A"
+                )
+            )
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "cmyra",
+                    "Caldera Myrggo A",
+                    null,
+                    1,
+                    "ftr",
+                    "alm",
+                    "esf2",
+                    "cmyra - Caldera Myrggo A"
+                )
+            )
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "chrb",
+                    "Cuchara B",
+                    null,
+                    1,
+                    "aa",
+                    "lc",
+                    "lab1",
+                    "chrb - Cuchara B"
+                )
+            )
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "chmb",
+                    "Chimenea B",
+                    null,
+                    1,
+                    "aa",
+                    "lc",
+                    "lab2",
+                    "chmb - Chimenea B"
+                )
+            )
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "htb",
+                    "Horno Retentor B",
+                    null,
+                    1,
+                    "fnc",
+                    "hns",
+                    "ci",
+                    "htb - Horno Retentor B"
+                )
+            )
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "bdab",
+                    "Bombas de Alim. / Recirc. L3 B",
+                    null,
+                    1,
+                    "fnc",
+                    "hns",
+                    "cgd",
+                    "bdab - Bombas de Alim. / Recirc. L3 B"
+                )
+            )
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "hrb",
+                    "Horno Retentor B",
+                    null,
+                    1,
+                    "brm",
+                    "hrt",
+                    "p13",
+                    "hrb - Horno Retentor B"
+                )
+            )
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "cmyrb",
+                    "Caldera Myrggo B",
+                    null,
+                    1,
+                    "brm",
+                    "hrt",
+                    "p280",
+                    "cmyrb - Caldera Myrggo B"
+                )
+            )
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "chrc",
+                    "Cuchara C",
+                    null,
+                    1,
+                    "tag",
+                    "p2",
+                    "cm",
+                    "chrc - Cuchara C"
+                )
+            )
+            equipments.add(
+                EquipmentEntity(
+                    0,
+                    "chmc",
+                    "Chimenea C",
+                    null,
+                    1,
+                    "tag",
+                    "p2",
+                    "cdb",
+                    "chmc - Chimenea C"
+                )
+            )
+
+            equipmentDao.bulkInsertEquipment(equipments)
+            //endregion inject equipment data
+
+            //region inject system type data
+            val systemTypes = ArrayList<SystemTypeEntity>()
+            systemTypes.add(
+                SystemTypeEntity(
+                    0,
+                    "ctrl",
+                    "Control",
+                    "Sistemas de Control",
+                    1,
+                    "ctrl_eventos",
+                    "ctrl - Control"
+                )
+            )
+            systemTypes.add(
+                SystemTypeEntity(
+                    0,
+                    "exp",
+                    "Experto",
+                    "Sistemas expertos",
+                    1,
+                    "ctrl_eventos",
+                    "exp - Experto"
+                )
+            )
+            systemTypes.add(
+                SystemTypeEntity(
+                    0,
+                    "anl",
+                    "Analizador",
+                    "Analizadores",
+                    1,
+                    "ctrl_eventos",
+                    "anl - Analizador"
+                )
+            )
+
+            systemTypeDao.bulkInsertSystemTypes(systemTypes)
+            //endregion inject system type data
+
+            //region inject event type data
+
+            //endregion inject event type data
+
+            //region inject priority data
+
+            //endregion inject priority data
+
+            //region inject status data
+
+            //endregion inject status data
 
 
         }

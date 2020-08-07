@@ -10,7 +10,10 @@ class AdministracionEventosViewModelFactory(
     private var areaRepository: AreaRepository,
     private var subareaRepository: SubareaRepository,
     private var equipmentRepository: EquipmentRepository,
-    private var systemTypeRepository: SystemTypeRepository
+    private var systemTypeRepository: SystemTypeRepository,
+    private var eventTypeRepository: EventTypeRepository,
+    private var priorityRepository: PriorityRepository,
+    private var statusRepository: StatusRepository
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
@@ -21,7 +24,10 @@ class AdministracionEventosViewModelFactory(
             areaRepository,
             subareaRepository,
             equipmentRepository,
-            systemTypeRepository
+            systemTypeRepository,
+            eventTypeRepository,
+            priorityRepository,
+            statusRepository
         ) as T
     }
 }

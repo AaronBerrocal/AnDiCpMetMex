@@ -127,13 +127,15 @@
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/card_font_size_normal"/>
 
-                    <EditText
-                        android:id="@+id/etv_report_event_subarea_value"
+                    <AutoCompleteTextView
+                        android:id="@+id/actv_report_event_subarea_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="@dimen/event_title_font_size_normal"
-                        android:hint="Nombre del Subárea"
+                        android:hint="Seleccione una Subárea"
+                        android:completionHint="Seleccione una Subárea"
+                        android:completionThreshold="1"
                         android:gravity="end" />
 
                 </LinearLayout>
@@ -155,13 +157,15 @@
                     android:textColor="@color/colorWhite"
                     android:textSize="@dimen/card_font_size_normal"/>
 
-                <EditText
-                    android:id="@+id/etv_report_event_equipo_planta_value"
+                <AutoCompleteTextView
+                    android:id="@+id/actv_report_event_equipo_planta_value"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textSize="@dimen/event_title_font_size_normal"
-                    android:hint="Nombre del Equipo de Planta"
+                    android:hint="Seleccione un Equipo"
+                    android:completionHint="Seleccione un Equipo"
+                    android:completionThreshold="1"
                     android:gravity="end" />
 
             </LinearLayout>
@@ -183,14 +187,13 @@
                         android:textColor="@color/colorWhite"
                         android:textSize="@dimen/card_font_size_normal"/>
 
-                    <EditText
-                        android:id="@+id/etv_report_event_tipo_sistema_value"
+                    <Spinner
+                        android:id="@+id/spinner_report_event_tipo_sistema_value"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="@dimen/event_title_font_size_normal"
-                        android:hint="Nombre del Tipo de Sistema"
-                        android:gravity="end" />
+                        android:textAlignment="viewEnd" />
 
                 </LinearLayout>
 

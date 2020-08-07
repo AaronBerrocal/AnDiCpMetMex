@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "823d3d8ef58f6778c0c4e3d66be6c343",
+    "identityHash": "36945a57f662b08f02d169d545ac0b5e",
     "entities": [
       {
         "tableName": "eventos",
@@ -638,12 +638,184 @@
           }
         ],
         "foreignKeys": []
+      },
+      {
+        "tableName": "a09_tipo_evento",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id_tipo_evento` TEXT NOT NULL, `tipo_evento` TEXT NOT NULL, `activo` INTEGER NOT NULL, `signature` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idTipoEvento",
+            "columnName": "id_tipo_evento",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "tipoEvento",
+            "columnName": "tipo_evento",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "activo",
+            "columnName": "activo",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "signature",
+            "columnName": "signature",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_a09_tipo_evento_id_tipo_evento",
+            "unique": true,
+            "columnNames": [
+              "id_tipo_evento"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_a09_tipo_evento_id_tipo_evento` ON `${TABLE_NAME}` (`id_tipo_evento`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "a13_prioridades",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id_prioridad` TEXT NOT NULL, `prioridad` TEXT NOT NULL, `activo` INTEGER NOT NULL, `signature` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idPrioridad",
+            "columnName": "id_prioridad",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "prioridad",
+            "columnName": "prioridad",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "activo",
+            "columnName": "activo",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "signature",
+            "columnName": "signature",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_a13_prioridades_id_prioridad",
+            "unique": true,
+            "columnNames": [
+              "id_prioridad"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_a13_prioridades_id_prioridad` ON `${TABLE_NAME}` (`id_prioridad`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "a12_estatus",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `id_estatus` TEXT NOT NULL, `estatus` TEXT NOT NULL, `descripcion` TEXT, `activo` INTEGER NOT NULL, `id_modulo` TEXT NOT NULL, `signature` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idEstatus",
+            "columnName": "id_estatus",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "estatus",
+            "columnName": "estatus",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "descripcion",
+            "columnName": "descripcion",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "activo",
+            "columnName": "activo",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "idModulo",
+            "columnName": "id_modulo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "signature",
+            "columnName": "signature",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_a12_estatus_id_estatus_id_modulo",
+            "unique": true,
+            "columnNames": [
+              "id_estatus",
+              "id_modulo"
+            ],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_a12_estatus_id_estatus_id_modulo` ON `${TABLE_NAME}` (`id_estatus`, `id_modulo`)"
+          }
+        ],
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '823d3d8ef58f6778c0c4e3d66be6c343')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '36945a57f662b08f02d169d545ac0b5e')"
     ]
   }
 }

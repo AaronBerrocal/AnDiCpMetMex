@@ -7,11 +7,8 @@ import com.aleph5.andicpmetmex.entities.SubareaEntity
 @Dao
 interface SubareaDao {
 
-    @Query("SELECT signature FROM a04_subareas WHERE activo = 1")
-    fun loadAllSubareaSignatures(): LiveData<List<String>>
-
-    @Query("SELECT signature FROM a04_subareas WHERE id_area = :selectedAreaId AND activo = 1 ")
-    fun searchSubareaSignaturesByAreaId(selectedAreaId: String): LiveData<List<String>>
+    @Query("SELECT * FROM a04_subareas WHERE activo = 1")
+    fun loadAllSubareas(): LiveData<List<SubareaEntity>>
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)

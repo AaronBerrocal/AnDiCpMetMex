@@ -16,15 +16,20 @@ class AdministracionEventosViewModel(
     private val areaRepository: AreaRepository,
     private val subareaRepository: SubareaRepository,
     private val equipmentRepository: EquipmentRepository,
-    private val systemTypeRepository: SystemTypeRepository
+    private val systemTypeRepository: SystemTypeRepository,
+    private val eventTypeRepository: EventTypeRepository,
+    private val priorityRepository: PriorityRepository,
+    private val statusRepository: StatusRepository
 ) : ViewModel() {
 
     val allEvents = eventRepository.events
     val eventsCount = eventRepository.eventsCount
     val allPlants = plantRepository.plants
     val allAreas = areaRepository.areas
-    val allSubareaSignatures = subareaRepository.subareaSignatures
-    val allEquipmentSignatures = equipmentRepository.equipmentSignatures
+    val allSubareas = subareaRepository.subareas
+    val allEquipments = equipmentRepository.equipments
+    val allEventTypes = eventTypeRepository.eventTypes
+    val allPriorities = priorityRepository.priorities
 
     //region Event methods
     fun insertEventVm(newEvent: EventEntity){
@@ -51,10 +56,6 @@ class AdministracionEventosViewModel(
     //endregion Plant Methods
 
     //region Area Methods
-
-    fun searchAreaSignaturesByPlantIdVm(selectedPlantId: String) =
-        areaRepository.searchAreaSignaturesByPlantIdRepo(selectedPlantId)
-
     fun bulkInsertAreasVm(newAreas: List<AreaEntity>): Job = viewModelScope.launch {
         areaRepository.bulkInsertAreasRepo(newAreas)
     }
@@ -65,12 +66,6 @@ class AdministracionEventosViewModel(
     //endregion Area Methods
 
     //region Subarea Methods
-    suspend fun searchSubareaSignaturesByAreaIdVm(selectedAreaId: String): LiveData<List<String>>{
-        return withContext(viewModelScope.coroutineContext) {
-            subareaRepository.searchSubareaSignaturesByAreaIdRepo(selectedAreaId)
-        }
-    }
-
     fun bulkInsertSubareasVm(newSubareas: List<SubareaEntity>): Job = viewModelScope.launch {
         subareaRepository.bulkInsertSubareasRepo(newSubareas)
     }
@@ -81,12 +76,6 @@ class AdministracionEventosViewModel(
     //endregion Subarea Methods
 
     //region Equipment Methods
-    suspend fun searchEquipmentSignaturesBySubareaIdVm(selectedSubareaId: String): LiveData<List<String>>{
-        return withContext(viewModelScope.coroutineContext) {
-            equipmentRepository.searchEquipmentSignaturesBySubareaIdRepo(selectedSubareaId)
-        }
-    }
-
     fun bulkInsertEquipmentVm(newEquipment: List<EquipmentEntity>): Job = viewModelScope.launch {
         equipmentRepository.bulkInsertEquipmentRepo(newEquipment)
     }
@@ -97,10 +86,8 @@ class AdministracionEventosViewModel(
     //endregion Equipment Methods
 
     //region SystemType Methods
-    suspend fun searchSystemTypesByModuleIdVm(selectedModuleId: String): LiveData<List<String>>{
-        return withContext(viewModelScope.coroutineContext){
-            systemTypeRepository.searchSystemTypesByModuleIdRepo(selectedModuleId)
-        }
+    fun searchSystemTypesByModuleIdVm(selectedModuleId: String): LiveData<List<SystemTypeEntity>>{
+        return systemTypeRepository.searchSystemTypesByModuleIdRepo(selectedModuleId)
     }
 
     fun bulkInsertSystemTypesVm(newSystemTypes: List<SystemTypeEntity>): Job = viewModelScope.launch {
@@ -111,5 +98,39 @@ class AdministracionEventosViewModel(
         equipmentRepository.deleteAllEquipmentRepo()
     }
     //endregion SystemType Methods
+
+    //region EventType Methods
+    fun bulkInsertEventTypesVm(newEventTypes: List<EventTypeEntity>): Job = viewModelScope.launch {
+        eventTypeRepository.bulkInsertEventTypesRepo(newEventTypes)
+    }
+
+    fun deleteAllEventTypesVm(): Job = viewModelScope.launch {
+        eventTypeRepository.deleteAllEventTypesRepo()
+    }
+    //endregion EventType Methods
+
+    //region Priority Methods
+    fun bulkInsertPrioritiesVm(newPriorities: List<PriorityEntity>): Job = viewModelScope.launch {
+        priorityRepository.bulkInsertPrioritiesRepo(newPriorities)
+    }
+
+    fun deleteAllPrioritiesVm(): Job = viewModelScope.launch {
+        priorityRepository.deleteAllPrioritiesRepo()
+    }
+    //endregion Priority Methods
+
+    //region Status Methods
+    fun searchStatusByModuleIdVm(selectedModuleId: String): LiveData<List<StatusEntity>>{
+        return statusRepository.searchStatusByModuleIdRepo(selectedModuleId)
+    }
+
+    fun bulkInsertStatusVm(newStatus: List<StatusEntity>): Job = viewModelScope.launch {
+        statusRepository.bulkInsertStatusRepo(newStatus)
+    }
+
+    fun deleteAllStatusVm(): Job = viewModelScope.launch {
+        statusRepository.deleteAllStatusRepo()
+    }
+    //endregion Status Methods
 
 }

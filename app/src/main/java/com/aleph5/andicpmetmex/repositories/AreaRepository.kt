@@ -8,8 +8,6 @@ class AreaRepository private constructor(private val areaDao: AreaDao){
 
     val areas: LiveData<List<AreaEntity>> = areaDao.loadAllAreas()
 
-    fun searchAreaSignaturesByPlantIdRepo(selectedPlantId: String) = areaDao.searchAreaSignaturesByPlantId(selectedPlantId)
-
     suspend fun bulkInsertAreasRepo(newAreas: List<AreaEntity>){
         areaDao.bulkInsertAreas(newAreas)
     }

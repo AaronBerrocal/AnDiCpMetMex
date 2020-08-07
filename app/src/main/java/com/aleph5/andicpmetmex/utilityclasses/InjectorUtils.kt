@@ -44,6 +44,24 @@ object InjectorUtils {
         )
     }
 
+    private fun getEventTypeRepository(context: Context): EventTypeRepository{
+        return EventTypeRepository.getInstance(
+            AnDiCpRoomDatabase.getInstance(context.applicationContext, GlobalScope).eventTypeDao()
+        )
+    }
+
+    private fun getPriorityRepository(context: Context): PriorityRepository{
+        return PriorityRepository.getInstance(
+            AnDiCpRoomDatabase.getInstance(context.applicationContext, GlobalScope).priorityDao()
+        )
+    }
+
+    private fun getStatusRepository(context: Context): StatusRepository{
+        return StatusRepository.getInstance(
+            AnDiCpRoomDatabase.getInstance(context.applicationContext, GlobalScope).statusDao()
+        )
+    }
+
     fun provideAdministracionEventosViewModelFactory(
         context: Context
     ): AdministracionEventosViewModelFactory{
@@ -53,7 +71,10 @@ object InjectorUtils {
             getAreaRepository(context),
             getSubareaRepository(context),
             getEquipmentRepository(context),
-            getSystemTypeRepository(context)
+            getSystemTypeRepository(context),
+            getEventTypeRepository(context),
+            getPriorityRepository(context),
+            getStatusRepository(context)
         )
     }
 }
